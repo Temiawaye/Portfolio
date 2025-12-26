@@ -6,7 +6,7 @@ import { SiCoreldraw } from "react-icons/si";
 export default function Projects() {
 
     return(
-        <div className="flex flex-col items-center w-full  py-28 px-5 gap-3">
+        <div className="flex flex-col items-center w-full  pt-14 pb-24 px-5 gap-3">
             <p className="font-bold text-3xl">Projects</p>
             <p>By using Applications Such as</p>
             <div className="flex flex-row gap-5">

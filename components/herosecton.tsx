@@ -4,8 +4,8 @@ export default function HeroSection() {
     return (
         <div className="flex flex-col justify-center items-center text-center h-screen px-5">
             <p className="text-5xl font-bold mb-4">AWAYE TEMILOLUWA</p>
-            <p className="text-xl mb-6 "> I am a Graphics Designer & Visual Artist</p>
-            <p className=" text-center mb-10">I bring ideas to life through compelling visuals and thoughtful design. Specializing in <br/> branding, illustration, print design, and visual identity systems.</p>
+            <p className="text-xl mb-6 text-gray-600 max-w-2xl mx-auto "> A Graphics Designer & Visual Artist</p>
+            <p className=" text-center mb-10 text- text-gray-600 max-w-2xl mx-auto">I bring ideas to life through compelling visuals and thoughtful design. Specializing in <br/> branding, illustration, print design, and visual identity systems.</p>
 
             <div className="flex gap-4 justify-center">
                 <button 

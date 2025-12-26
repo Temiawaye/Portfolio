@@ -7,7 +7,7 @@ import { Mail, Linkedin, Github, Globe } from "lucide-react"
 export default function Contact() {
 
     return(
-        <div className="flex flex-col items-center w-full bg-gray-100 pt-14 pb-24 px-5 md:px-16 lg:px-44">
+        <div className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
             <p className="font-bold text-3xl mb-4">Contact Us</p>
             <p className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</p>
 
