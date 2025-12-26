@@ -52,16 +52,27 @@ export function Work() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
             <p className="font-bold text-3xl">Projects</p>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 mt-5  mx-auto ">
                 A showcase of my recent design work across branding, print, and digital media.
             </p>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">By using Applications Such as</p>
+            {/* <p className="text-xl text-gray-600 max-w-2xl mx-auto">By using Applications Such as</p>
             <div className="flex flex-row justify-center gap-5">
                 <SiAdobephotoshop className="size-12 text-blue-800 " color="blue" />
                 <SiAdobeillustrator className="size-12" />
                 <SiCoreldraw className="size-12" />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto" >we have designed multiple graphics</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto" >we have designed multiple graphics</p> */}
+            <div className="flex flex-col items-center gap-4">
+                <p className="text-gray-600 text-xl">Designed using industry-standard applications</p>
+                <div className="flex flex-row justify-center gap-10 items-center">
+                    {/* Photoshop - Blue */}
+                    <SiAdobephotoshop className="size-16 md:size-20 text-[#31A8FF] hover:text-blue-600 transition-colors duration-300" title="Adobe Photoshop" />
+                    {/* Illustrator - Orange */}
+                    <SiAdobeillustrator className="size-16 md:size-20 text-[#FF9A00] hover:text-orange-600 transition-colors duration-300" title="Adobe Illustrator" />
+                    {/* CorelDraw - Green */}
+                    <SiCoreldraw className="size-16 md:size-20 text-[#009B48] hover:text-green-600 transition-colors duration-300" title="CorelDRAW" />
+                </div>
+            </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

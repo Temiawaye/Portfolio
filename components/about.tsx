@@ -5,7 +5,7 @@ export default function About() {
     return(
         <div className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5">
             <p className="font-bold text-3xl">About Us</p>
-            <p className="text-center mt-5 md:px-5 lg:px-28 text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-center mt-5 md:px-5 lg:px-28 text-xl text-gray-600 mx-auto">
                 We are a creative design and print brand built on the belief that visual identity goes beyond the screen.
 
                 We create designs that not only look good digitally but also translate powerfully into print, helping brands show up consistently and professionally everywhere they are seen.
