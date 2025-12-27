@@ -1,5 +1,7 @@
+"use client"
 import { SiAdobephotoshop, SiAdobeillustrator, SiCoreldraw } from 'react-icons/si';
 import { ProjectCard } from './projectCard';
+import { easeIn, motion } from 'motion/react';
 
 const projects = [
   {
@@ -46,41 +48,58 @@ const projects = [
   }
 ];
 
+const container = {
+    hidden : {opacity: 0,},
+    visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+}
+
+const item = {
+    hidden: {opacity: 0, y: 100},
+    visible: {opacity: 1, y: 0, transition: {easeIn} }
+}
+
 export function Work() {
   return (
-    <section id="work" className="py-20 px-4 bg-gray-50">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-            <p className="font-bold text-3xl">Projects</p>
-            <p className="text-xl text-gray-600 mt-5  mx-auto ">
+    <motion.section 
+    id="work"
+    variants={container}
+    initial= "hidden"
+    animate= "visible" 
+    className="py-20 px-4 bg-gray-50">
+      <motion.div className="container mx-auto max-w-6xl">
+        <motion.div className="text-center mb-16">
+            <motion.p variants={item} className="font-bold text-3xl">Projects</motion.p>
+            <motion.p variants={item} className="text-xl text-gray-600 mt-5  mx-auto ">
                 A showcase of my recent design work across branding, print, and digital media.
-            </p>
+            </motion.p>
             {/* <p className="text-xl text-gray-600 max-w-2xl mx-auto">By using Applications Such as</p>
             <div className="flex flex-row justify-center gap-5">
                 <SiAdobephotoshop className="size-12 text-blue-800 " color="blue" />
                 <SiAdobeillustrator className="size-12" />
                 <SiCoreldraw className="size-12" />
-            </div>
+            </motion.div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto" >we have designed multiple graphics</p> */}
-            <div className="flex flex-col items-center gap-4">
-                <p className="text-gray-600 text-xl">Designed using industry-standard applications</p>
-                <div className="flex flex-row justify-center gap-10 items-center">
+            <motion.div className="flex flex-col items-center gap-4">
+                <motion.p variants={item} className="text-gray-600 text-xl">Designed using industry-standard applications</motion.p>
+                <motion.div variants={item} className="flex flex-row justify-center gap-10 items-center">
                     {/* Photoshop - Blue */}
                     <SiAdobephotoshop className="size-16 md:size-20 text-[#31A8FF] hover:text-blue-600 transition-colors duration-300" title="Adobe Photoshop" />
                     {/* Illustrator - Orange */}
                     <SiAdobeillustrator className="size-16 md:size-20 text-[#FF9A00] hover:text-orange-600 transition-colors duration-300" title="Adobe Illustrator" />
                     {/* CorelDraw - Green */}
                     <SiCoreldraw className="size-16 md:size-20 text-[#009B48] hover:text-green-600 transition-colors duration-300" title="CorelDRAW" />
-                </div>
-            </div>
-        </div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <motion.div key={index} variants={item}>
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

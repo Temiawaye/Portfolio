@@ -1,26 +1,55 @@
 "use client"
+import { easeIn, motion } from "motion/react"
+
+const container = {
+    hidden: {opacity: 0},
+    visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+}
+
+const item = {
+    hidden: {opacity: 0, x: -100},
+    visible: {opacity: 1, x:0, transition: {easeIn} }
+}
+
+const itema = {
+    hidden: {opacity: 0, y: -50},
+    visible: {opacity: 1, y:0, transition: {easeIn} }
+}
+
+const itemb = {
+    hidden: {opacity: 0, y: 50},
+    visible: {opacity: 1, y:0, transition: {easeIn} }
+}
 
 export default function HeroSection() {
     return (
-        <div className="flex flex-col justify-center items-center text-center h-screen px-5">
-            <p className="text-5xl font-bold mb-4">AWAYE TEMILOLUWA</p>
-            <p className="text-xl mb-6 text-gray-600  "> A Graphics Designer & Visual Artist</p>
-            <p className=" text-center mb-10 text- text-gray-600 ">I bring ideas to life through compelling visuals and thoughtful design. Specializing in <br/> branding, illustration, print design, and visual identity systems.</p>
+        <motion.div 
+        variants = {container}
+        initial = "hidden"
+        animate = "visible"
+        // initial={{opacity: 0, y: 40 }} 
+        // animate={{opacity: 1, y: 0 }} 
+        // transition={{duration: 1, ease: "easeOut"}}
+        className="flex flex-col justify-center items-center text-center h-screen px-5"
+        >
+            <motion.p variants={itema} className="text-5xl font-bold mb-4">AWAYE TEMILOLUWA</motion.p>
+            <motion.p variants={item} className="text-xl mb-6 text-gray-600  "> A Graphics Designer & Visual Artist</motion.p>
+            <motion.p variants={item} className=" text-center mb-10 text- text-gray-600 ">I bring ideas to life through compelling visuals and thoughtful design. Specializing in <br/> branding, illustration, print design, and visual identity systems.</motion.p>
 
-            <div className="flex gap-4 justify-center">
+            <motion.div variants={itemb} className="flex gap-4 justify-center">
                 <button 
                     onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                    className="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
                 >
                     View My Work
                 </button>
                 <button 
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors"
+                    className="border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
                 >
                     Get In Touch
                 </button>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 }

@@ -3,15 +3,32 @@
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { Mail, Linkedin, Github, Globe } from "lucide-react"
+import { easeIn, motion } from "motion/react";
+
+const container = {
+  hidden : {opacity: 0,},
+  visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+}
+
+const item = {
+  hidden: {opacity: 0, y: 100},
+  visible: {opacity: 1, y: 0, transition: {easeIn} }
+}
 
 export default function Contact() {
 
     return(
-        <div className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
-            <p className="font-bold text-3xl mb-4">Contact Us</p>
-            <p className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</p>
+        <motion.div
+        variants={container}
+        initial= "hidden"
+        animate= "visible"
+        className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
+            <motion.p variants={item} className="font-bold text-3xl mb-4">Contact Us</motion.p>
+            <motion.p variants={item} className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</motion.p>
 
-            <div className="bg-white border-0 rounded-xl py-10 px-10 md:px-14 lg:px-28 justify-center w-full flex flex-col">
+            <motion.div
+            variants={item} 
+            className="bg-white border-0 rounded-xl py-10 px-10 md:px-14 lg:px-28 justify-center w-full flex flex-col">
 
                 <div className="grid grid-cols-1 justify-center md:grid-cols-2 gap-8 mb-8">
                     <a 
@@ -108,7 +125,7 @@ export default function Contact() {
                         Send Message
                     </button>
                 </form>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }
