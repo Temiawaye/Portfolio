@@ -1,29 +1,36 @@
 "use client"
-import { easeIn, motion } from "motion/react"
+import { easeIn, easeOut, motion } from "motion/react"
 
 const container = {
     hidden: {opacity: 0},
-    visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+    visible: {
+        opacity: 1, 
+        transition: {
+            staggerChildren: 0.3,
+            delayChildren: 0.9, 
+        }
+    }
 }
 
 const item = {
-    hidden: {opacity: 0, x: -100},
-    visible: {opacity: 1, x:0, transition: {easeIn} }
+    hidden: {opacity: 0, x: -30},
+    visible: {opacity: 1, x:0, transition: { duration: 0.6, ease: easeOut } }
 }
 
 const itema = {
-    hidden: {opacity: 0, y: -50},
-    visible: {opacity: 1, y:0, transition: {easeIn} }
+    hidden: {opacity: 0, y: -30},
+    visible: {opacity: 1, y:0, transition: { duration: 0.6, ease: easeOut } }
 }
 
 const itemb = {
-    hidden: {opacity: 0, y: 50},
-    visible: {opacity: 1, y:0, transition: {easeIn} }
+    hidden: {opacity: 0, y: 30},
+    visible: {opacity: 1, y:0, transition: { duration: 0.6, ease: easeOut } }
 }
 
 export default function HeroSection() {
     return (
         <motion.div 
+        id="home"
         variants = {container}
         initial = "hidden"
         animate = "visible"

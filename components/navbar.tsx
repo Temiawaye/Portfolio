@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Menu } from 'lucide-react';
-import HeroSection from "./herosecton";
 import { motion } from "motion/react";
 
 export default function Navbar() {
@@ -40,9 +39,9 @@ export default function Navbar() {
 
     return (
         <motion.div
-        initial = {{opacity: 0, y: -30}} 
+        initial = {{opacity: 0, y: -20}} 
         animate = {{opacity: 1, y: 0 }}
-        transition={{duration: 0.3, ease: "easeIn"}}
+        transition={{duration: 0.8, ease: "easeOut"}}
         className="flex justify-between items-center lg:px-20 lg:py-8 p-5 fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-sm  border-gray-300 ">
             <h1>LOGO</h1>
             <div className="hidden lg:flex lg:gap-10 gap-5">
@@ -55,8 +54,8 @@ export default function Navbar() {
             <motion.div 
             className={`absolute min-h-dvh lg:hidden top-16 right-0 w-3/5 bg-white/80  flex flex-col items-center gap-6 font-semibold px-3 text-lg transform transition-transform `} 
             initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: menuOpen ? 1 : 0, x: 0 }}
-            transition={{duration: 0.3, ease: "easeIn"}}
+            animate={{ opacity: menuOpen ? 1 : 0, x: menuOpen ? 0 : 40 }}
+            transition={{duration: 0.3, ease: "easeOut"}}
             // style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
             
             >

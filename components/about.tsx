@@ -1,26 +1,27 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { easeIn } from "motion"
+import { easeOut, motion } from "motion/react" 
 
 const container = {
     hidden : {opacity: 0,},
-    visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+    visible: {opacity: 1, transition: {staggerChildren: 0.2 }}
 }
 
 const item = {
-    hidden: {opacity: 0, y: 100},
-    visible: {opacity: 1, y: 0, transition: {easeIn} }
+    hidden: {opacity: 0, y: 50},
+    visible: {opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
 }
 
 
 export default function About() {
 
     return(
-        <motion.div 
+        <motion.div
+        id="about" 
         variants={container}
         initial= "hidden"
-        animate= "visible"
+        whileInView= "visible"
+        viewport={{ once: true, amount: 0.3 }}
         className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5">
             <motion.p variants={item} className="font-bold text-3xl">About Us</motion.p>
             <motion.p variants={item} className="text-center mt-5 md:px-5 lg:px-28 text-xl text-gray-600 mx-auto">
@@ -37,3 +38,4 @@ export default function About() {
         </motion.div>
     )
 }
+

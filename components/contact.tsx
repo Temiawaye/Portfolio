@@ -3,25 +3,27 @@
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { Mail, Linkedin, Github, Globe } from "lucide-react"
-import { easeIn, motion } from "motion/react";
+import { easeIn, easeOut, motion } from "motion/react";
 
 const container = {
   hidden : {opacity: 0,},
-  visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+  visible: {opacity: 1, transition: {staggerChildren: 0.2 }}
 }
 
 const item = {
   hidden: {opacity: 0, y: 100},
-  visible: {opacity: 1, y: 0, transition: {easeIn} }
+  visible: {opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
 }
 
 export default function Contact() {
 
     return(
         <motion.div
+        id="contact"
         variants={container}
         initial= "hidden"
-        animate= "visible"
+        whileInView= "visible"
+        viewport={{ once: true, amount: 0.3 }}
         className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
             <motion.p variants={item} className="font-bold text-3xl mb-4">Contact Us</motion.p>
             <motion.p variants={item} className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</motion.p>
@@ -129,3 +131,4 @@ export default function Contact() {
         </motion.div>
     )
 }
+

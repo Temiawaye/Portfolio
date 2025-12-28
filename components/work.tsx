@@ -1,7 +1,7 @@
 "use client"
 import { SiAdobephotoshop, SiAdobeillustrator, SiCoreldraw } from 'react-icons/si';
 import { ProjectCard } from './projectCard';
-import { easeIn, motion } from 'motion/react';
+import { easeIn, easeOut, motion } from 'motion/react';
 
 const projects = [
   {
@@ -50,21 +50,22 @@ const projects = [
 
 const container = {
     hidden : {opacity: 0,},
-    visible: {opacity: 1, transition: {staggerChildren: 0.5 }}
+    visible: {opacity: 1, transition: {staggerChildren: 0.2 }}
 }
 
 const item = {
     hidden: {opacity: 0, y: 100},
-    visible: {opacity: 1, y: 0, transition: {easeIn} }
+    visible: {opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
 }
 
 export function Work() {
   return (
     <motion.section 
-    id="work"
+    id="projects"
     variants={container}
     initial= "hidden"
-    animate= "visible" 
+    whileInView= "visible" 
+    viewport={{ once: true, amount: 0.1 }}
     className="py-20 px-4 bg-gray-50">
       <motion.div className="container mx-auto max-w-6xl">
         <motion.div className="text-center mb-16">
@@ -94,7 +95,7 @@ export function Work() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <motion.div key={index} variants={item}>
+            <motion.div key={index} variants={item}>  
               <ProjectCard {...project} />
             </motion.div>
           ))}
@@ -103,3 +104,4 @@ export function Work() {
     </motion.section>
   );
 }
+
