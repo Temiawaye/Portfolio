@@ -62,7 +62,7 @@ export default function Navbar() {
               <button onClick={() => scrollToSection('home')} className="w-full text-center p-4 border-b border-gray-500 cursor-pointer">Home</button>
               <button onClick={() => scrollToSection('about')} className="w-full text-center p-4 border-b border-gray-500 cursor-pointer">About</button>
               <button onClick={() => scrollToSection('projects')} className="w-full text-center p-4 border-b border-gray-500 cursor-pointer">Work</button>
-              <button onClick={() => scrollToSection('contact')} className="w-full text-center p-4 border-b border-gray-500 cursor-pointer">Contact Me</button>
+              <button onClick={() => scrollToSection('contact')} className="w-full text-center p-4 border-b border-gray-500 cursor-pointer">Contact</button>
             </motion.div>
         </motion.div>
     )

@@ -25,7 +25,7 @@ export default function Contact() {
         whileInView= "visible"
         viewport={{ once: true, amount: 0.3 }}
         className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
-            <motion.p variants={item} className="font-bold text-3xl mb-4">Contact Us</motion.p>
+            <motion.p variants={item} className="font-bold text-3xl mb-4">Contact</motion.p>
             <motion.p variants={item} className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</motion.p>
 
             <motion.div
