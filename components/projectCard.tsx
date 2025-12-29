@@ -47,3 +47,4 @@ export function ProjectCard({ title, description, image, tags, link }: ProjectCa
     </div>
   );
 }
+

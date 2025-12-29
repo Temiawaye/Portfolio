@@ -1,134 +1,75 @@
 "use client"
 
+import { Mail, Linkedin, Twitter, Instagram } from "lucide-react"
+import { easeOut, motion } from "motion/react";
 import { FaWhatsappSquare } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { Mail, Linkedin, Github, Globe } from "lucide-react"
-import { easeIn, easeOut, motion } from "motion/react";
 
 const container = {
-  hidden : {opacity: 0,},
+  hidden : {opacity: 0},
   visible: {opacity: 1, transition: {staggerChildren: 0.2 }}
 }
 
 const item = {
-  hidden: {opacity: 0, y: 100},
+  hidden: {opacity: 0, y: 30},
   visible: {opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
 }
 
 export default function Contact() {
-
     return(
-        <motion.div
-        id="contact"
-        variants={container}
-        initial= "hidden"
-        whileInView= "visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="flex flex-col items-center w-full bg-gray-200 pt-14 pb-24 px-5 md:px-16 lg:px-44">
-            <motion.p variants={item} className="font-bold text-3xl mb-4">Contact</motion.p>
-            <motion.p variants={item} className="text-center mb-6">Have a design project in mind? Let's bring your vision to life</motion.p>
-
-            <motion.div
-            variants={item} 
-            className="bg-white border-0 rounded-xl py-10 px-10 md:px-14 lg:px-28 justify-center w-full flex flex-col">
-
-                <div className="grid grid-cols-1 justify-center md:grid-cols-2 gap-8 mb-8">
-                    <a 
-                        href="mailto:hello@alexrivera.design"
-                        className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                        <div className="w-12 h-12 rounded-full bg-red-400 flex items-center justify-center">
-                            <Mail className="text-white" size={24} />
+        <motion.section
+            id="contact"
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="py-24 px-5 md:px-10 lg:px-20 max-w-7xl mx-auto"
+        >
+            <div className="grid lg:grid-cols-2 gap-16">
+                {/* Left Side: Info */}
+                <motion.div variants={item} className="space-y-8">
+                    <h2 className="text-4xl md:text-5xl font-black tracking-tight">LET'S WORK <br/> TOGETHER</h2>
+                    <p className="text-xl text-gray-600 max-w-md">
+                        Have a project in mind? I'm always looking for new challenges and collaborations.
+                    </p>
+                    
+                    <div className="space-y-4 pt-4">
+                        <a href="mailto:hello@alexrivera.design" className="flex items-center gap-4 text-xl font-medium hover:text-gray-600 transition-colors">
+                            <Mail /> hello@temiawaye.design
+                        </a>
+                        <div className="flex gap-4 pt-4">
+                            {[Linkedin, Twitter, Instagram, FaWhatsappSquare ].map((Icon, i) => (
+                                <a key={i} href="#" className="p-3 bg-gray-100 rounded-full hover:bg-black hover:text-white transition-all">
+                                    <Icon size={20} />
+                                </a>
+                            ))}
                         </div>
-                        <div>
-                            <div className="font-bold text-gray-900">Email</div>
-                            <div className="text-gray-600">hello@alexrivera.design</div>
+                    </div>
+                </motion.div>
+
+                {/* Right Side: Minimal Form */}
+                <motion.div variants={item} className="bg-gray-50 p-8 md:p-12 rounded-3xl">
+                    <form className="space-y-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold uppercase tracking-wider text-gray-500">Name</label>
+                                <input type="text" className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors" placeholder="Your name" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold uppercase tracking-wider text-gray-500">Email</label>
+                                <input type="email" className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors" placeholder="temi@example.com" />
+                            </div>
                         </div>
-                    </a>
-
-                    <a 
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center">
-                        <Linkedin className="text-white" size={24} />
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">LinkedIn</div>
-                        <div className="text-gray-600">@alexrivera</div>
-                      </div>
-                    </a>
-
-                    <a 
-                      href="https://dribbble.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="">
-                        <FaWhatsappSquare className="text-green-700" size={46} />
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">WhatsApp</div>
-                        <div className="text-gray-600">@alexrivera</div>
-                      </div>
-                    </a>
-
-                    <a 
-                      href="https://behance.net"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="">
-                        <FaSquareXTwitter className="" size={46} />
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">Behance</div>
-                        <div className="text-gray-600">@alexrivera</div>
-                      </div>
-                    </a>
-                </div>
-
-                <form className="space-y-6">
-                    <div>
-                        <label htmlFor="name" className="block text-gray-900 mb-2">Name</label>
-                        <input 
-                            type="text" 
-                            id="name"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Your name"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block text-gray-900 mb-2">Email</label>
-                        <input 
-                        type="email" 
-                        id="email"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="your.email@example.com"
-                    />
-                    </div>
-                    <div>
-                        <label htmlFor="message" className="block text-gray-900         mb-2">Message</label>
-                        <textarea 
-                          id="message"
-                          rows={5}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg         focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="Tell me about your project..."
-                    />
-                    </div>
-                    <button 
-                        type="submit"
-                        className="w-full bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
-                    >
-                        Send Message
-                    </button>
-                </form>
-            </motion.div>
-        </motion.div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-semibold uppercase tracking-wider text-gray-500">Message</label>
+                            <textarea rows={4} className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors" placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <button type="submit" className="w-full bg-black text-white py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all mt-4">
+                            Send Message
+                        </button>
+                    </form>
+                </motion.div>
+            </div>
+        </motion.section>
     )
 }
 

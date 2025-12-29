@@ -69,38 +69,39 @@ export function Work() {
     className="py-20 px-4 bg-gray-50">
       <motion.div className="container mx-auto max-w-6xl">
         <motion.div className="text-center mb-16">
-            <motion.p variants={item} className="font-bold text-3xl">Projects</motion.p>
+            <motion.p variants={item} className="text-3xl md:text-4xl font-black tracking-tight">Projects</motion.p>
             <motion.p variants={item} className="text-xl text-gray-600 mt-5  mx-auto ">
                 A showcase of my recent design work across branding, print, and digital media.
             </motion.p>
             {/* <p className="text-xl text-gray-600 max-w-2xl mx-auto">By using Applications Such as</p>
-            <div className="flex flex-row justify-center gap-5">
+            <div className="flex flex-row opacity-60 justify-center gap-5">
                 <SiAdobephotoshop className="size-12 text-blue-800 " color="blue" />
                 <SiAdobeillustrator className="size-12" />
                 <SiCoreldraw className="size-12" />
             </motion.div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto" >we have designed multiple graphics</p> */}
-            <motion.div className="flex flex-col items-center gap-4">
+            <motion.div className="flex flex-col items-center gap-4 md:gap-7">
                 <motion.p variants={item} className="text-gray-600 text-xl">Designed using industry-standard applications</motion.p>
-                <motion.div variants={item} className="flex flex-row justify-center gap-10 items-center">
+                <motion.div variants={item} className="flex flex-row justify-center gap-5 md:gap-10 items-center">
                     {/* Photoshop - Blue */}
-                    <SiAdobephotoshop className="size-16 md:size-20 text-[#31A8FF] hover:text-blue-600 transition-colors duration-300" title="Adobe Photoshop" />
+                    <SiAdobephotoshop className="size-10 md:size-15 text-[#31A8FF] hover:text-blue-600 transition-colors duration-300" title="Adobe Photoshop" />
                     {/* Illustrator - Orange */}
-                    <SiAdobeillustrator className="size-16 md:size-20 text-[#FF9A00] hover:text-orange-600 transition-colors duration-300" title="Adobe Illustrator" />
+                    <SiAdobeillustrator className="size-10 md:size-15 text-[#FF9A00] hover:text-orange-600 transition-colors duration-300" title="Adobe Illustrator" />
                     {/* CorelDraw - Green */}
-                    <SiCoreldraw className="size-16 md:size-20 text-[#009B48] hover:text-green-600 transition-colors duration-300" title="CorelDRAW" />
+                    <SiCoreldraw className="size-10 md:size-15 text-[#009B48] hover:text-green-600 transition-colors duration-300" title="CorelDRAW" />
                 </motion.div>
             </motion.div>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+      </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:px-5">
           {projects.map((project, index) => (
             <motion.div key={index} variants={item}>  
               <ProjectCard {...project} />
             </motion.div>
           ))}
         </div>
-      </motion.div>
     </motion.section>
   );
 }
