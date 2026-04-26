@@ -1,108 +1,153 @@
 "use client"
-import { SiAdobephotoshop, SiAdobeillustrator, SiCoreldraw } from 'react-icons/si';
-import { ProjectCard } from './projectCard';
-import { easeIn, easeOut, motion } from 'motion/react';
 
-const projects = [
-  {
-    title: 'Brand Identity Design',
-    description: 'Complete brand identity system including logo design, color palette, and brand guidelines.',
-    image: 'https://images.unsplash.com/photo-1612810806546-ebbf22b53496?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dvJTIwZGVzaWduJTIwYnJhbmRpbmd8ZW58MXx8fHwxNzY2NDU3MTU2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Branding', 'Logo Design', 'Identity'],
-    link: '#'
-  },
-  {
-    title: 'Event Poster Series',
-    description: 'Bold typographic poster designs for a music festival featuring dynamic compositions.',
-    image: 'https://images.unsplash.com/photo-1739476478863-42b2b97eb647?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3N0ZXIlMjBkZXNpZ24lMjB0eXBvZ3JhcGh5fGVufDF8fHx8MTc2NjUxOTg5NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Print Design', 'Typography', 'Poster'],
-    link: '#'
-  },
-  {
-    title: 'Product Packaging',
-    description: 'Premium packaging design for an organic skincare line with eco-friendly materials.',
-    image: 'https://images.unsplash.com/photo-1668775589980-58f9f0021ce5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWNrYWdpbmclMjBkZXNpZ24lMjBwcm9kdWN0fGVufDF8fHx8MTc2NjUxOTg5NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Packaging', '3D Mockup', 'Product Design'],
-    link: '#'
-  },
-  {
-    title: 'Custom Illustrations',
-    description: 'Vibrant illustration series created for a children\'s book and educational materials.',
-    image: 'https://images.unsplash.com/photo-1744057847940-85b1a5c09229?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjBhcnR3b3JrJTIwY29sb3JmdWx8ZW58MXx8fHwxNzY2NDI2OTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Illustration', 'Digital Art', 'Character Design'],
-    link: '#'
-  },
-  {
-    title: 'Magazine Layout',
-    description: 'Editorial design for a lifestyle magazine featuring clean layouts and beautiful typography.',
-    image: 'https://images.unsplash.com/photo-1619795845878-27014d545342?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWdhemluZSUyMGxheW91dCUyMGVkaXRvcmlhbHxlbnwxfHx8fDE3NjY1MTk4OTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Editorial', 'Layout Design', 'Print'],
-    link: '#'
-  },
-  {
-    title: 'Business Stationery',
-    description: 'Professional business card and stationery set with elegant minimal design.',
-    image: 'https://images.unsplash.com/photo-1718670013921-2f144aba173a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNhcmQlMjBkZXNpZ258ZW58MXx8fHwxNzY2NDMzNjA1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    tags: ['Branding', 'Print', 'Stationery'],
-    link: '#'
-  }
-];
+import { easeOut, motion } from 'motion/react';
 
 const container = {
-    hidden : {opacity: 0,},
-    visible: {opacity: 1, transition: {staggerChildren: 0.2 }}
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 }
 
 const item = {
-    hidden: {opacity: 0, y: 100},
-    visible: {opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } }
 }
+
+const projects = [
+  {
+    title: 'SRS Studio',
+    description: 'An AI-powered tool to generate structured Software Requirements Specifications (SRS) with deterministic evaluation metrics.',
+    image: '/srs-studio.png',
+    tags: ['Next.js', 'LLM', 'TypeScript'],
+    liveLink: 'https://srs-studio.vercel.app/',
+    githubLink: '#',
+    featured: true,
+  },
+  {
+    title: 'SaaS Analytics Dashboard',
+    description: 'A comprehensive analytics dashboard with real-time data visualization, user management, and customizable reporting.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmQlMjB1aXxlbnwxfHx8fDE3NjY1NTEzMjd8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    tags: ['Next.js', 'Tailwind CSS', 'Recharts'],
+    liveLink: '#',
+    githubLink: '#',
+  },
+  {
+    title: 'E-Commerce Storefront',
+    description: 'A high-performance headless e-commerce store featuring dynamic product routing, cart management, and seamless checkout.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjB3ZWJzaXRlfGVufDF8fHx8MTc2NjU1MTM0OXww&ixlib=rb-4.1.0&q=80&w=1080',
+    tags: ['React', 'Stripe', 'Framer Motion'],
+    liveLink: '#',
+    githubLink: '#',
+  },
+  {
+    title: 'Fintech Mobile Web App',
+    description: 'A responsive financial application for tracking investments, managing portfolios, and executing seamless transactions.',
+    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNlJTIwYXBwfGVufDF8fHx8MTc2NjU1MTQwM3ww&ixlib=rb-4.1.0&q=80&w=1080',
+    tags: ['React Native', 'Redux', 'D3.js'],
+    liveLink: '#',
+    githubLink: '#',
+  },
+  {
+    title: 'Developer Documentation Site',
+    description: 'A beautiful, MDX-powered documentation site with dark mode, full-text search, and interactive code playgrounds.',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxjb2Rpbmd8ZW58MXx8fHwxNzY2NTUxNDMwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    tags: ['Next.js', 'MDX', 'Algolia'],
+    liveLink: '#',
+    githubLink: '#',
+  },
+  {
+    title: 'Real-time Collaboration Tool',
+    description: 'A virtual whiteboard and chat application enabling teams to brainstorm and design together in real time.',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xsYWJvcmF0aW9uJTIwYXBwfGVufDF8fHx8MTc2NjU1MTQ2NXww&ixlib=rb-4.1.0&q=80&w=1080',
+    tags: ['Socket.io', 'Node.js', 'Canvas API'],
+    liveLink: '#',
+    githubLink: '#',
+  }
+];
 
 export function Work() {
   return (
-    <motion.section 
-    id="projects"
-    variants={container}
-    initial= "hidden"
-    whileInView= "visible" 
-    viewport={{ once: true, amount: 0.1 }}
-    className="py-20 px-4 bg-gray-50">
-      <motion.div className="container mx-auto max-w-6xl">
-        <motion.div className="text-center mb-16">
-            <motion.p variants={item} className="text-3xl md:text-4xl font-black tracking-tight">Projects</motion.p>
-            <motion.p variants={item} className="text-xl text-gray-600 mt-5  mx-auto ">
-                A showcase of my recent design work across branding, print, and digital media.
-            </motion.p>
-            {/* <p className="text-xl text-gray-600 max-w-2xl mx-auto">By using Applications Such as</p>
-            <div className="flex flex-row opacity-60 justify-center gap-5">
-                <SiAdobephotoshop className="size-12 text-blue-800 " color="blue" />
-                <SiAdobeillustrator className="size-12" />
-                <SiCoreldraw className="size-12" />
-            </motion.div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto" >we have designed multiple graphics</p> */}
-            <motion.div className="flex flex-col items-center gap-4 md:gap-7">
-                <motion.p variants={item} className="text-gray-600 text-xl">Designed using industry-standard applications</motion.p>
-                <motion.div variants={item} className="flex flex-row justify-center gap-5 md:gap-10 items-center">
-                    {/* Photoshop - Blue */}
-                    <SiAdobephotoshop className="size-10 md:size-15 text-[#31A8FF] hover:text-blue-600 transition-colors duration-300" title="Adobe Photoshop" />
-                    {/* Illustrator - Orange */}
-                    <SiAdobeillustrator className="size-10 md:size-15 text-[#FF9A00] hover:text-orange-600 transition-colors duration-300" title="Adobe Illustrator" />
-                    {/* CorelDraw - Green */}
-                    <SiCoreldraw className="size-10 md:size-15 text-[#009B48] hover:text-green-600 transition-colors duration-300" title="CorelDRAW" />
-                </motion.div>
-            </motion.div>
+    <motion.section
+      id="projects"
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.05 }}
+      className="py-28 px-5 md:px-10 lg:px-20 bg-white"
+    >
+      <div className="mx-auto">
+        {/* Header */}
+        <motion.div variants={item} className="mb-20 flex flex-col items-center justify-center gap-2 text-center">
+          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-4">Projects</p>
+          <div className="">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-neutral-900 leading-tight mb-3">
+              Selected Work.
+            </h2>
+            <p className="text-neutral-500 max-w-sm text-base leading-relaxed">
+              A showcase of recent frontend engineering projects, highlighting modern architecture and interactive UI/UX.
+            </p>
+          </div>
         </motion.div>
-        
-        
-      </motion.div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:px-5">
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
           {projects.map((project, index) => (
-            <motion.div key={index} variants={item}>  
-              <ProjectCard {...project} />
+            <motion.div
+              key={index}
+              variants={item}
+              className={`group relative overflow-hidden rounded-3xl bg-neutral-50 border border-neutral-100 card-lift cursor-pointer ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''
+                }`}
+            >
+              {/* Image */}
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/10 transition-colors duration-300" />
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full text-xs font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-xl font-bold text-neutral-900 mb-1.5 group-hover:text-neutral-600 transition-colors">{project.title}</h3>
+                <p className="text-neutral-500 text-sm leading-relaxed">{project.description}</p>
+              </div>
+
+              {/* Visit links */}
+              <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    className="bg-white/90 backdrop-blur-sm text-neutral-900 text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-neutral-100 hover:shadow-sm"
+                  >
+                    Code
+                  </a>
+                )}
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    className="bg-neutral-900/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-neutral-800 hover:shadow-sm"
+                  >
+                    Live Demo
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
+      </div>
     </motion.section>
   );
 }
-
