@@ -39,7 +39,7 @@ export default function HeroSection() {
             // initial={{opacity: 0, y: 40 }} 
             // animate={{opacity: 1, y: 0 }} 
             // transition={{duration: 1, ease: "easeOut"}}
-            className="flex flex-col justify-center items-center text-center h-screen px-5 relative overflow-hidden"
+            className="flex flex-col justify-center items-center text-center h-dvh px-5 relative overflow-hidden"
         >
             <motion.img
                 variants={itema}
@@ -47,11 +47,29 @@ export default function HeroSection() {
                 alt="Profile Picture"
                 className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-6 md:mb-8 border-4 border-white shadow-xl"
             />
-            <motion.p variants={itema} className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6 leading-[0.9]">AWAYE <br className="md:hidden" /> TEMILOLUWA</motion.p>
-            <motion.p variants={item} className="text-center text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10">A Frontend Engineer & UI Developer</motion.p>
-            <motion.p variants={item} className="text-center text-md md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10">Bringing ideas to life through performant code and thoughtful design. Specializing in frontend architecture, full-stack applications, and interactive user interfaces.</motion.p>
+            <motion.p 
+                variants={itema} 
+                className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6 leading-[0.9]"
+            >
+                AWAYE <br className="md:hidden" /> TEMILOLUWA
+            </motion.p>
+            <motion.p 
+                variants={item} 
+                className="text-center text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10"
+            >
+                A Frontend Engineer & UI Developer
+            </motion.p>
+            <motion.p 
+                variants={item} 
+                className="text-center text-md md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10"
+            >
+                Bringing ideas to life through performant code and thoughtful design. Specializing in frontend architecture, full-stack applications, and interactive user interfaces.
+            </motion.p>
 
-            <motion.div variants={itemb} className="flex gap-4 justify-center">
+            <motion.div 
+                variants={itemb} 
+                className="flex gap-4 justify-center"
+            >
                 <button
                     onClick={() => document.getElementById('pojects')?.scrollIntoView({ behavior: 'smooth' })}
                     className="bg-gray-900 text-white px-8 py-3 rounded-2xl hover:bg-gray-800 transition-colors cursor-pointer"

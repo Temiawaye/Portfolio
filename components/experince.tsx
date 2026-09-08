@@ -11,6 +11,16 @@ import {
     SiTypescript,
     SiSupabase,
     SiFigma,
+    SiFirebase,
+    SiJavascript,
+    SiGit,
+    SiGithub,
+    SiPostgresql,
+    SiFramer,
+    SiVercel,
+    SiNodedotjs,
+    SiExpo,
+    SiHuggingface
 } from "react-icons/si";
 
 const container = {
@@ -31,27 +41,53 @@ const stats = [
 
 const designTools = [
     // { icon: SiAdobephotoshop, color: "#31A8FF", name: "Photoshop" },
-    // { icon: SiAdobeillustrator, color: "#FF9A00", name: "Illustrator" },
+    // { icon: SiAdobeillustrator, color: "#ecae4aff", name: "Illustrator" },
     // { icon: SiCoreldraw, color: "#009B48", name: "CorelDRAW" },
     { icon: SiFigma, color: "#F24E1E", name: "Figma" },
+    { icon: SiFramer, color: "", name: "Framer" },
+    { icon: SiGit, color: "#F24E1E", name: "Git" },
+    { icon: SiGithub, color: "", name: "Github" },
+    
 ]
 
 const devTools = [
     { icon: SiReact, color: "#61DAFB", name: "React" },
+    { icon: SiExpo, color: "#", name: "React Expo" },
     { icon: SiNextdotjs, color: "#000000", name: "Next.js" },
-    { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind" },
     { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
+    { icon: SiJavascript, color: "#FF9A00", name: "JavaScript" },
+    { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind" },
+    { icon: SiNodedotjs, color: "#3ECF8E", name: "Node.js" },
+    { icon: SiPostgresql, color: "#3ECF8E", name: "PostgreSql" },
     { icon: SiSupabase, color: "#3ECF8E", name: "Supabase" },
+    { icon: SiFirebase, color: "#F24E1E", name: "Firebase" },
+    { icon: SiVercel, color: "", name: "Vercel" },
+    { icon: SiHuggingface, color: "#f8b859ff", name: "HuggingFace" },
 ]
 
 const experiences = [
-    { role: "Senior Frontend Engineer", company: "TechNova Solutions", date: "2023 - Present", desc: "Leading UI development for enterprise web applications, optimizing performance, and establishing robust design systems." },
-    { role: "Frontend Developer", company: "Digital Studio Inc.", date: "2020 - 2023", desc: "Developed responsive E-commerce storefronts and interactive marketing sites using React, Next.js, and Tailwind CSS." }
+    { 
+        role: "Tech Support Engineer", 
+        company: "ECOBANK Nigeria", 
+        date: "2024", 
+        desc: "Assisted the thecnical and develpoment team in carry out their jobs by providing technical support." 
+    }
 ]
 
 const education = [
-    { degree: "BSc in Computer Science", school: "University of Technology", date: "2016 - 2020", desc: "Graduated with honors. Specialized in software engineering, algorithms, and web technologies." },
-    { degree: "Advanced UI/UX Certification", school: "Design Academy", date: "2021", desc: "Intensive practical program focusing on user-centered design, prototyping, and accessibility principles." }
+    { 
+        degree: "BSc in Computer Science", 
+        school: "Federal Unviversity Oye-Ekiti", 
+        date: "2022 - 2026", 
+        desc: "Graduated with honors. Specialized in software engineering, algorithms, and web technologies." 
+    },
+
+    { 
+        degree: "Advanced UI/UX Certification", 
+        school: "Udemy", 
+        date: "2023", 
+        desc: "Intensive practical program focusing on user-centered design, prototyping, and accessibility principles." 
+    }
 ]
 
 export default function Experience() {
@@ -125,14 +161,14 @@ export default function Experience() {
 
                 {/* Tools grid */}
                 <div className="grid md:grid-cols-2 gap-12">
-                    {/* Design Tools */}
+                    {/* Design Tools and collaboration tools*/}
                     <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Design Tools</p>
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Design Tools and Collaboration Tools</p>
                         <div className="grid grid-cols-2 gap-4">
                             {designTools.map((tool, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-neutral-400 hover:shadow-md transition-all card-lift group"
+                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-none hover:shadow-md transition-all card-lift group"
                                 >
                                     <tool.icon
                                         size={32}
@@ -152,7 +188,7 @@ export default function Experience() {
                             {devTools.map((tool, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-neutral-400 hover:shadow-md transition-all card-lift group"
+                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-none hover:shadow-md transition-all card-lift group"
                                 >
                                     <tool.icon
                                         size={32}

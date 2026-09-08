@@ -49,7 +49,10 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`flex justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-sm  border-gray-300 ${scrolled ? "bg-white/80 backdrop-blur-md border-b border-gray-100 py-2" : "bg-transparent py-6"} `}>
+      className={`flex max-w-6xl mx-auto rounded rounded-full mt-3 justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-sm  border-gray-300 
+          ${scrolled ? "bg-background backdrop-blur-md border-b border-gray-100 py-2" : "bg-transparent py-6"} `
+      }
+    >
       {/* Logo */}
       <button
         onClick={() => scrollToSection('home')}
@@ -73,7 +76,7 @@ export default function Navbar() {
           onClick={() => scrollToSection('contact')}
           className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition-all hover:scale-105"
         >
-          Let's Talk
+          Get in touch
         </button>
       </div>
 
@@ -82,6 +85,7 @@ export default function Navbar() {
       </button>
 
     </motion.div>
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
