@@ -1,6 +1,6 @@
 "use client"
 import { ArrowDown } from "lucide-react"
-import { easeIn, easeOut, motion } from "motion/react"
+import { easeOut, motion } from "motion/react"
 
 const container = {
     hidden: { opacity: 0 },
@@ -85,12 +85,30 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-10 animate-bounce"
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                    delay: 1.5,
+                    type: "spring",
+                    stiffness: 180,
+                    damping: 14,
+                }}
+                className="absolute bottom-10"
             >
-                <ArrowDown className="text-gray-400" />
+                <motion.div
+                    animate={{
+                        y: [0, -14, 0],
+                        scale: [1, 1.08, 1],
+                    }}
+                    transition={{
+                        delay: 2,
+                        duration: 1.15,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                    }}
+                >
+                    <ArrowDown className="text-gray-400" />
+                </motion.div>
             </motion.div>
 
         </motion.div>
