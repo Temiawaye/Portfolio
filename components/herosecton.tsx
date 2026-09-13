@@ -107,7 +107,7 @@ export default function HeroSection() {
                         repeat: Infinity,
                     }}
                 >
-                    <ArrowDown className="text-gray-400" />
+                    <ArrowDown className="text-gray-400 w-8 h-8 " />
                 </motion.div>
             </motion.div>
 

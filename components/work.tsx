@@ -32,6 +32,24 @@ const projects = [
     githubLink: '#',
   },
 
+  {
+    title: 'Kinetic Apex',
+    description: 'A fitness website with a focus on the user experience and animations.',
+    image: '/gymwrath/hero.png',
+    tags: ['Next.js', 'Framer Motion'],
+    liveLink: 'https://gymwarth.vercel.app/',
+    githubLink: '#',
+  },
+
+  {
+    title: 'Campus Buddy',
+    description: 'A mobile app for university students to connect and share resources.',
+    image: '/CampusBuddy/Campusbuddy.png',
+    tags: ['React Native', 'Expo', 'Firebase'],
+    liveLink: '#',
+    githubLink: '#',
+  },
+
 ];
 
 export function Work() {
