@@ -22,7 +22,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="py-28 px-5 md:px-10 lg:px-20 bg-bg-secondary text-text-primary"
+            className="py-15 px-5 md:px-10 lg:px-20 bg-bg-secondary text-text-primary"
         >
             <motion.div
                 variants={container}
@@ -44,13 +44,13 @@ export default function About() {
                     {/* Left: main copy */}
                     <motion.div variants={item} className="space-y-6 text-justify text-text-secondary text-lg leading-relaxed">
                         <p>
-                            I am a specialized frontend engineer focused on bridging the gap between design and engineering. I build robust digital products that look stunning and perform flawlessly.
+                            A specialized frontend engineer focused on bridging the gap between design and engineering. Building robust digital products that looks stunning and perform flawlessly giving businesses and users optimal experience.
                         </p>
                         <p>
-                            My work centers on writing clean, accessible code and creating modern architectures that scale. Whether it&apos;s a dynamic SaaS dashboard or an interactive marketing site, I bring ideas to life on the web.
+                            My work centers around writing clean, accessible code and creating modern architectures that scale. Whether it&apos;s a dynamic SaaS dashboard or an interactive marketing site, I bring ideas to life on the web.
                         </p>
                         <p>
-                            I partner with businesses and startups who value pixel-perfect implementations, seamless user experiences, and maintainable codebases.
+                            Collaborating with businesses and startups to deliver pixel-perfect implementations, seamless user experiences, and maintainable codebases.
                         </p>
                     </motion.div>
 

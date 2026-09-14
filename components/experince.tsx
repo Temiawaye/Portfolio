@@ -33,20 +33,10 @@ const item = {
 
 const stats = [
     { value: "3+", label: "Years of Experience" },
-    { value: "50+", label: "Projects Completed" },
+    { value: "5+", label: "Projects Completed and counting" },
     { value: "99%", label: "Client Satisfaction" }
 ]
 
-const designTools = [
-    // { icon: SiAdobephotoshop, color: "#31A8FF", name: "Photoshop" },
-    // { icon: SiAdobeillustrator, color: "#ecae4aff", name: "Illustrator" },
-    // { icon: SiCoreldraw, color: "#009B48", name: "CorelDRAW" },
-    { icon: SiFigma, color: "#F24E1E", name: "Figma" },
-    { icon: SiFramer, color: "", name: "Framer" },
-    { icon: SiGit, color: "#F24E1E", name: "Git" },
-    { icon: SiGithub, color: "", name: "Github" },
-    
-]
 
 const devTools = [
     { icon: SiReact, color: "#61DAFB", name: "React" },
@@ -61,30 +51,35 @@ const devTools = [
     { icon: SiFirebase, color: "#F24E1E", name: "Firebase" },
     { icon: SiVercel, color: "", name: "Vercel" },
     { icon: SiHuggingface, color: "#f8b859ff", name: "HuggingFace" },
+    { icon: SiFigma, color: "#F24E1E", name: "Figma" },
+    { icon: SiFramer, color: "", name: "Framer" },
+    { icon: SiGit, color: "#F24E1E", name: "Git" },
+    { icon: SiGithub, color: "", name: "Github" },
+
 ]
 
 const experiences = [
-    { 
-        role: "Tech Support Engineer", 
-        company: "ECOBANK Nigeria", 
-        date: "2024", 
-        desc: "Assisted the thecnical and develpoment team in carry out their jobs by providing technical support." 
+    {
+        role: "Tech Support Engineer",
+        company: "ECOBANK Nigeria",
+        date: "2024",
+        desc: "Assisted the thecnical and develpoment team in carry out their jobs by providing technical support."
     }
 ]
 
 const education = [
-    { 
-        degree: "BSc in Computer Science", 
-        school: "Federal Unviversity Oye-Ekiti", 
-        date: "2022 - 2026", 
-        desc: "Graduated with honors. Specialized in software engineering, algorithms, and web technologies." 
+    {
+        degree: "BSc in Computer Science",
+        school: "Federal Unviversity Oye-Ekiti",
+        date: "2022 - 2026",
+        desc: "Graduated with honors. Specialized in software engineering, algorithms, and web technologies."
     },
 
-    { 
-        degree: "Advanced UI/UX Certification", 
-        school: "Udemy", 
-        date: "2023", 
-        desc: "Intensive practical program focusing on user-centered design, prototyping, and accessibility principles." 
+    {
+        degree: "Advanced UI/UX Certification",
+        school: "Udemy",
+        date: "2023",
+        desc: "Intensive practical program focusing on user-centered design, prototyping, and accessibility principles."
     }
 ]
 
@@ -136,81 +131,66 @@ export default function Experience() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
-            className="py-28 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
+            className="py-15 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
         >
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
-                <motion.div variants={item} className="text-center mb-20">
+                <motion.div variants={item} className=" mb-5">
                     <p className="text-xs font-semibold tracking-[0.3em] uppercase text-accent mb-4">Experience</p>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight text-text-primary">
-                        Numbers that speak.
-                    </h2>
-                </motion.div>
-
-                {/* Stats row */}
-                <motion.div
-                    variants={item}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border-default border border-border-default rounded-2xl overflow-hidden mb-20"
-                >
-                    {stats.map((s, i) => (
-                        <div key={i} className="bg-bg-secondary flex flex-col items-center justify-center py-10 px-6 text-center">
-                            <p className="text-5xl font-black text-text-primary tracking-tight">{s.value}</p>
-                            <p className="text-sm text-text-muted mt-2 font-medium">{s.label}</p>
-                        </div>
-                    ))}
                 </motion.div>
 
                 {/* Experience & Education */}
                 <motion.div variants={item} className="mb-20">
-                    <div className="mb-6 flex items-end justify-between gap-4">
+                    <div className="mb-5 flex items-end justify-between gap-3 md:mb-6 md:gap-4">
                         <div>
                             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted">Journey</p>
                             <p className="mt-2 text-sm text-text-secondary">Scroll vertically to explore each milestone.</p>
                         </div>
-                        <p className="text-sm font-semibold tabular-nums text-text-muted" aria-hidden="true">
+                        <p className="shrink-0 rounded-full border border-border-default bg-bg-secondary px-3 py-1 text-xs font-semibold tabular-nums text-text-muted md:text-sm" aria-hidden="true">
                             {String(activeJourneyIndex + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")}
                         </p>
                     </div>
 
-                    <div className="flex items-stretch gap-5 md:gap-8">
+                    <div className="flex items-stretch gap-3 md:gap-8">
                         <div
                             ref={journeyRailRef}
                             onScroll={updateJourneyProgress}
                             tabIndex={0}
                             aria-label="Education and work experience. Scroll vertically to view more."
-                            className="flex h-72 min-w-0 flex-1 snap-y snap-mandatory flex-col gap-5 overflow-y-auto overscroll-y-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-80"
+                            className="flex h-[22rem] min-w-0 flex-1 snap-y snap-mandatory flex-col gap-4 overflow-y-auto overscroll-y-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-80 md:gap-5"
                         >
                             {journey.map((entry) => (
                                 <article
                                     key={`${entry.category}-${entry.title}`}
-                                    className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-7 transition-colors hover:border-accent md:p-10"
+                                    className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent sm:p-7 md:p-10"
                                 >
                                     <div>
-                                        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-accent">{entry.category}</p>
-                                        <h3 className="max-w-2xl text-2xl font-bold text-text-primary md:text-4xl">{entry.title}</h3>
-                                        <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-muted">
+                                        <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-accent sm:text-xs md:mb-5 md:tracking-[0.3em]">{entry.category}</p>
+                                        <h3 className="max-w-2xl text-xl font-bold leading-tight text-text-primary sm:text-2xl md:text-4xl">{entry.title}</h3>
+                                        <div className="mt-3 flex flex-col items-start gap-1 text-xs text-text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 sm:text-sm">
                                             <span className="font-semibold text-text-secondary">{entry.organization}</span>
-                                            <span aria-hidden="true">•</span>
+                                            <span className="hidden sm:inline" aria-hidden="true">•</span>
                                             <span>{entry.date}</span>
                                         </div>
                                     </div>
-                                    <p className="mt-8 max-w-2xl text-sm leading-relaxed text-text-secondary md:text-base">{entry.desc}</p>
+                                    <p className="mt-6 max-w-2xl text-sm leading-relaxed text-text-secondary md:mt-8 md:text-base">{entry.desc}</p>
                                 </article>
                             ))}
                         </div>
 
-                        <div
-                            role="progressbar"
-                            aria-label="Journey scroll progress"
-                            aria-valuemin={1}
-                            aria-valuemax={journey.length}
-                            aria-valuenow={activeJourneyIndex + 1}
-                            className="relative order-first flex w-5 shrink-0 flex-col items-center justify-between py-3"
-                        >
-                            <span className="absolute inset-y-3 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
+                        <div className="relative order-first flex w-7 shrink-0 flex-col items-center justify-between py-1 md:w-8 md:py-2">
                             <span
-                                className="absolute left-1/2 top-3 w-px -translate-x-1/2 bg-accent transition-[height] duration-300"
-                                style={{ height: `calc((100% - 1.5rem) * ${activeJourneyIndex / Math.max(journey.length - 1, 1)})` }}
+                                role="progressbar"
+                                aria-label="Journey scroll progress"
+                                aria-valuemin={1}
+                                aria-valuemax={journey.length}
+                                aria-valuenow={activeJourneyIndex + 1}
+                                className="sr-only"
+                            />
+                            <span className="absolute inset-y-5 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
+                            <span
+                                className="absolute left-1/2 top-5 w-px -translate-x-1/2 bg-accent transition-[height] duration-300"
+                                style={{ height: `calc((100% - 2.5rem) * ${activeJourneyIndex / Math.max(journey.length - 1, 1)})` }}
                                 aria-hidden="true"
                             />
                             {journey.map((entry, index) => (
@@ -220,43 +200,41 @@ export default function Experience() {
                                     onClick={() => scrollToJourneyCard(index)}
                                     aria-label={`Show ${entry.title}`}
                                     aria-current={activeJourneyIndex === index ? "step" : undefined}
-                                    className={`relative z-10 h-3 w-3 rounded-full border transition-all ${
-                                        activeJourneyIndex === index
-                                            ? "scale-125 border-accent bg-accent"
-                                            : "border-border-control bg-bg-primary hover:border-accent-hover"
-                                    }`}
-                                />
+                                    className="group relative z-10 flex h-10 w-7 items-center justify-center rounded-full md:w-8"
+                                >
+                                    <span
+                                        className={`block h-3 w-3 rounded-full border transition-all ${
+                                            activeJourneyIndex === index
+                                                ? "scale-125 border-accent bg-accent"
+                                                : "border-border-control bg-bg-primary group-hover:border-accent-hover"
+                                        }`}
+                                        aria-hidden="true"
+                                    />
+                                </button>
                             ))}
                         </div>
                     </div>
                 </motion.div>
 
-                {/* Tools grid */}
-                <div className="grid md:grid-cols-2 gap-12">
-                    {/* Design Tools and collaboration tools*/}
-                    <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Design Tools and Collaboration Tools</p>
-                        <div className="grid grid-cols-2 gap-4">
-                            {designTools.map((tool, i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-border-default bg-bg-secondary hover:border-accent transition-all card-lift group"
-                                >
-                                    <tool.icon
-                                        size={32}
-                                        style={{ color: tool.color }}
-                                        className="transition-transform group-hover:scale-110 duration-300"
-                                    />
-                                    <span className="font-semibold text-text-secondary">{tool.name}</span>
-                                </div>
-                            ))}
+                {/* Stats row */}
+                <motion.div
+                    variants={item}
+                    className="grid grid-cols-3 gap-px bg-border-default border border-border-default rounded-2xl overflow-hidden mb-20"
+                >
+                    {stats.map((s, i) => (
+                        <div key={i} className="bg-bg-secondary flex flex-col items-center justify-center py-10 px-6 text-center">
+                            <p className="text-3xl md:text-5xl font-black text-text-primary tracking-tight">{s.value}</p>
+                            <p className="text-xs md:text-sm text-text-muted mt-2 font-medium">{s.label}</p>
                         </div>
-                    </motion.div>
+                    ))}
+                </motion.div>
 
+                {/* Tools grid */}
+                <div className="">
                     {/* Dev Tools */}
                     <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Stack</p>
-                        <div className="grid grid-cols-2 gap-4">
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Tools</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                             {devTools.map((tool, i) => (
                                 <div
                                     key={i}

@@ -22,7 +22,7 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.2 }}
-            className="py-24 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
+            className="py-15 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
         >
             <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
                 {/* Left Side: Info */}
