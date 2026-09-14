@@ -193,7 +193,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                                 ? [0, 0.65, 0.22]
                                 : 0,
                 }}
-                transition={{ duration: isHovered ? 0.2 : 1.9, ease: "easeOut" }}
+                transition={{ duration: isHovered ? 0.25 : 3.2, ease: "easeOut" }}
                 className="pointer-events-none absolute inset-0"
                 style={{ background: "radial-gradient(140px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(191, 95, 255, 0.16), transparent 70%)" }}
                 aria-hidden="true"
@@ -210,7 +210,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                 }
                 transition={isHovered
                     ? { type: "spring", stiffness: 300, damping: 18 }
-                    : { duration: 1.6, ease: "easeInOut" }
+                    : { duration: 2.8, ease: "easeInOut" }
                 }
                 className="relative z-10 flex"
             >
@@ -236,7 +236,7 @@ export default function Experience() {
 
         const cycle = window.setInterval(() => {
             setActiveToolIndex((currentIndex) => (currentIndex + 1) % devTools.length)
-        }, 2400)
+        }, 4200)
 
         return () => window.clearInterval(cycle)
     }, [isToolCyclePaused])
@@ -430,7 +430,7 @@ export default function Experience() {
                                             strokeDasharray="4 7"
                                             initial={{ pathLength: 0, opacity: 0 }}
                                             animate={{ pathLength: 1, opacity: [0, 0.5, 0.16] }}
-                                            transition={{ duration: 1.9, ease: "easeInOut" }}
+                                            transition={{ duration: 3.2, ease: "easeInOut" }}
                                         />
                                     ))}
                                 </svg>
