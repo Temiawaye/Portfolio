@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useState } from 'react';
 import { easeOut, motion } from 'motion/react';
 import {
     SiReact,
@@ -87,7 +88,47 @@ const education = [
     }
 ]
 
+const journey = [
+    ...education.map((entry) => ({
+        category: "Education",
+        title: entry.degree,
+        organization: entry.school,
+        ...entry,
+    })),
+    ...experiences.map((entry) => ({
+        category: "Work Experience",
+        title: entry.role,
+        organization: entry.company,
+        ...entry,
+    })),
+]
+
 export default function Experience() {
+    const journeyRailRef = useRef<HTMLDivElement>(null)
+    const [activeJourneyIndex, setActiveJourneyIndex] = useState(0)
+
+    const updateJourneyProgress = () => {
+        const rail = journeyRailRef.current
+        if (!rail) return
+
+        const cards = Array.from(rail.children) as HTMLElement[]
+        const closestCardIndex = cards.reduce((closestIndex, card, index) => {
+            const currentDistance = Math.abs(card.offsetLeft - rail.offsetLeft - rail.scrollLeft)
+            const closestDistance = Math.abs(cards[closestIndex].offsetLeft - rail.offsetLeft - rail.scrollLeft)
+            return currentDistance < closestDistance ? index : closestIndex
+        }, 0)
+
+        setActiveJourneyIndex(closestCardIndex)
+    }
+
+    const scrollToJourneyCard = (index: number) => {
+        const rail = journeyRailRef.current
+        const card = rail?.children[index] as HTMLElement | undefined
+        if (!rail || !card) return
+
+        rail.scrollTo({ left: card.offsetLeft - rail.offsetLeft, behavior: "smooth" })
+    }
+
     return (
         <motion.section
             id="experience"
@@ -120,41 +161,75 @@ export default function Experience() {
                 </motion.div>
 
                 {/* Experience & Education */}
-                <div className="grid md:grid-cols-2 gap-12 mb-20">
-                    <motion.div variants={item} className="space-y-8">
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Work Experience</p>
-                        <div className="space-y-6">
-                            {experiences.map((exp, i) => (
-                                <div key={i} className="bg-bg-secondary p-6 rounded-2xl border border-border-default card-lift hover:border-accent transition-colors">
-                                    <h3 className="font-bold text-xl text-text-primary">{exp.role}</h3>
-                                    <div className="flex items-center gap-2 text-sm text-text-muted mt-1 mb-3">
-                                        <span className="font-semibold">{exp.company}</span>
-                                        <span>•</span>
-                                        <span>{exp.date}</span>
-                                    </div>
-                                    <p className="text-text-secondary text-sm leading-relaxed">{exp.desc}</p>
-                                </div>
-                            ))}
+                <motion.div variants={item} className="mb-20">
+                    <div className="mb-6 flex items-end justify-between gap-4">
+                        <div>
+                            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted">Journey</p>
+                            <p className="mt-2 text-sm text-text-secondary">Scroll horizontally to explore each milestone.</p>
                         </div>
-                    </motion.div>
+                        <p className="text-sm font-semibold tabular-nums text-text-muted" aria-hidden="true">
+                            {String(activeJourneyIndex + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")}
+                        </p>
+                    </div>
 
-                    <motion.div variants={item} className="space-y-8">
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Education</p>
-                        <div className="space-y-6">
-                            {education.map((edu, i) => (
-                                <div key={i} className="bg-bg-secondary p-6 rounded-2xl border border-border-default card-lift hover:border-accent transition-colors">
-                                    <h3 className="font-bold text-xl text-text-primary">{edu.degree}</h3>
-                                    <div className="flex items-center gap-2 text-sm text-text-muted mt-1 mb-3">
-                                        <span className="font-semibold">{edu.school}</span>
-                                        <span>•</span>
-                                        <span>{edu.date}</span>
+                    <div className="flex items-stretch gap-5 md:gap-8">
+                        <div
+                            ref={journeyRailRef}
+                            onScroll={updateJourneyProgress}
+                            tabIndex={0}
+                            aria-label="Education and work experience. Scroll horizontally to view more."
+                            className="flex min-w-0 flex-1 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        >
+                            {journey.map((entry) => (
+                                <article
+                                    key={`${entry.category}-${entry.title}`}
+                                    className="flex min-h-64 min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-7 transition-colors hover:border-accent md:min-h-72 md:p-10"
+                                >
+                                    <div>
+                                        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-accent">{entry.category}</p>
+                                        <h3 className="max-w-2xl text-2xl font-bold text-text-primary md:text-4xl">{entry.title}</h3>
+                                        <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-muted">
+                                            <span className="font-semibold text-text-secondary">{entry.organization}</span>
+                                            <span aria-hidden="true">•</span>
+                                            <span>{entry.date}</span>
+                                        </div>
                                     </div>
-                                    <p className="text-text-secondary text-sm leading-relaxed">{edu.desc}</p>
-                                </div>
+                                    <p className="mt-8 max-w-2xl text-sm leading-relaxed text-text-secondary md:text-base">{entry.desc}</p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
-                </div>
+
+                        <div
+                            role="progressbar"
+                            aria-label="Journey scroll progress"
+                            aria-valuemin={1}
+                            aria-valuemax={journey.length}
+                            aria-valuenow={activeJourneyIndex + 1}
+                            className="relative flex w-5 shrink-0 flex-col items-center justify-between py-3"
+                        >
+                            <span className="absolute inset-y-3 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
+                            <span
+                                className="absolute left-1/2 top-3 w-px -translate-x-1/2 bg-accent transition-[height] duration-300"
+                                style={{ height: `calc((100% - 1.5rem) * ${activeJourneyIndex / Math.max(journey.length - 1, 1)})` }}
+                                aria-hidden="true"
+                            />
+                            {journey.map((entry, index) => (
+                                <button
+                                    key={`${entry.category}-tracker-${index}`}
+                                    type="button"
+                                    onClick={() => scrollToJourneyCard(index)}
+                                    aria-label={`Show ${entry.title}`}
+                                    aria-current={activeJourneyIndex === index ? "step" : undefined}
+                                    className={`relative z-10 h-3 w-3 rounded-full border transition-all ${
+                                        activeJourneyIndex === index
+                                            ? "scale-125 border-accent bg-accent"
+                                            : "border-border-control bg-bg-primary hover:border-accent-hover"
+                                    }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* Tools grid */}
                 <div className="grid md:grid-cols-2 gap-12">
