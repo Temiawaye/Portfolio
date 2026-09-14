@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef, useState } from 'react';
-import { easeOut, motion } from 'motion/react';
+import { useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { easeOut, motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react';
 import {
     SiReact,
     SiNextdotjs,
@@ -40,7 +40,7 @@ const stats = [
 
 const devTools = [
     { icon: SiReact, color: "#61DAFB", name: "React" },
-    { icon: SiExpo, color: "#", name: "React Expo" },
+    { icon: SiExpo, color: "var(--text-primary)", name: "React Expo" },
     { icon: SiNextdotjs, color: "var(--text-primary)", name: "Next.js" },
     { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
     { icon: SiJavascript, color: "#FF9A00", name: "JavaScript" },
@@ -97,6 +97,77 @@ const journey = [
         ...entry,
     })),
 ]
+
+function ToolCard({ tool, index, duplicate = false }: {
+    tool: (typeof devTools)[number]
+    index: number
+    duplicate?: boolean
+}) {
+    const prefersReducedMotion = useReducedMotion()
+    const [isHovered, setIsHovered] = useState(false)
+    const rotateX = useMotionValue(0)
+    const rotateY = useMotionValue(0)
+    const smoothRotateX = useSpring(rotateX, { stiffness: 220, damping: 22 })
+    const smoothRotateY = useSpring(rotateY, { stiffness: 220, damping: 22 })
+
+    const followPointer = (event: ReactPointerEvent<HTMLDivElement>) => {
+        if (prefersReducedMotion) return
+
+        const card = event.currentTarget
+        const bounds = card.getBoundingClientRect()
+        const pointerX = event.clientX - bounds.left
+        const pointerY = event.clientY - bounds.top
+
+        card.style.setProperty("--spotlight-x", `${pointerX}px`)
+        card.style.setProperty("--spotlight-y", `${pointerY}px`)
+
+        rotateX.set(-((pointerY / bounds.height) - 0.5) * 5)
+        rotateY.set(((pointerX / bounds.width) - 0.5) * 5)
+    }
+
+    const resetCard = () => {
+        setIsHovered(false)
+        rotateX.set(0)
+        rotateY.set(0)
+    }
+
+    return (
+        <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={prefersReducedMotion ? undefined : {
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 210, damping: 19, delay: (index % 8) * 0.055 },
+            }}
+            viewport={{ once: true, amount: 0.35 }}
+            whileHover={prefersReducedMotion ? undefined : {
+                y: -6,
+                transition: { type: "spring", stiffness: 260, damping: 18 },
+            }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
+            onPointerMove={followPointer}
+            onPointerEnter={() => setIsHovered(true)}
+            onPointerLeave={resetCard}
+            aria-hidden={duplicate || undefined}
+            style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformPerspective: 800 }}
+            className="group relative flex w-48 shrink-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent md:w-56"
+        >
+            <span
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: "radial-gradient(140px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(191, 95, 255, 0.16), transparent 70%)" }}
+                aria-hidden="true"
+            />
+            <motion.span
+                animate={prefersReducedMotion || !isHovered ? { scale: 1, rotate: 0 } : { scale: 1.1, rotate: 4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="relative z-10 flex"
+            >
+                <tool.icon size={32} style={{ color: tool.color }} />
+            </motion.span>
+            <span className="relative z-10 font-semibold text-text-secondary">{tool.name}</span>
+        </motion.div>
+    )
+}
 
 export default function Experience() {
     const journeyRailRef = useRef<HTMLDivElement>(null)
@@ -229,25 +300,25 @@ export default function Experience() {
                     ))}
                 </motion.div>
 
-                {/* Tools grid */}
-                <div className="">
-                    {/* Dev Tools */}
-                    <motion.div variants={item}>
+                {/* Development tools marquee */}
+                <div>
+                    <motion.div variants={item} className="overflow-hidden">
                         <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Tools</p>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            {devTools.map((tool, i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-border-default bg-bg-secondary hover:border-accent transition-all card-lift group"
-                                >
-                                    <tool.icon
-                                        size={32}
-                                        style={{ color: tool.color }}
-                                        className="transition-transform group-hover:scale-110 duration-300"
-                                    />
-                                    <span className="font-semibold text-text-secondary">{tool.name}</span>
-                                </div>
-                            ))}
+                        <div className="overflow-visible py-2 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+                            <div className="tool-marquee">
+                                {[false, true].map((duplicate) => (
+                                    <div key={String(duplicate)} className="flex shrink-0 gap-4 pr-4" aria-hidden={duplicate || undefined}>
+                                        {devTools.map((tool, index) => (
+                                            <ToolCard
+                                                key={`${tool.name}-${duplicate ? "duplicate" : "original"}`}
+                                                tool={tool}
+                                                index={index}
+                                                duplicate={duplicate}
+                                            />
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 </div>
