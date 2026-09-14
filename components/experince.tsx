@@ -205,7 +205,7 @@ export default function Experience() {
                             aria-valuemin={1}
                             aria-valuemax={journey.length}
                             aria-valuenow={activeJourneyIndex + 1}
-                            className="relative flex w-5 shrink-0 flex-col items-center justify-between py-3"
+                            className="relative order-first flex w-5 shrink-0 flex-col items-center justify-between py-3"
                         >
                             <span className="absolute inset-y-3 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
                             <span
