@@ -155,8 +155,6 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
         rotateY.set(0)
     }
 
-    const isHighlighted = isHovered || isAutoActive
-
     return (
         <motion.div
             ref={cardRef}
@@ -179,10 +177,14 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
             }}
             onPointerLeave={resetCard}
             style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformPerspective: 800 }}
-            className={`group relative z-10 flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border bg-bg-secondary p-5 transition-colors ${
-                isHighlighted ? "border-accent" : "border-border-default hover:border-accent"
-            }`}
+            className="group relative z-10 flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5"
         >
+            <motion.span
+                animate={{ opacity: isHovered || isAutoActive ? 1 : 0 }}
+                transition={{ duration: isHovered ? 0.2 : 0.8, ease: "easeInOut" }}
+                className="pointer-events-none absolute inset-0 rounded-[inherit] border border-accent"
+                aria-hidden="true"
+            />
             <motion.span
                 animate={{
                     opacity: prefersReducedMotion
