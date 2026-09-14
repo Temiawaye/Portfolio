@@ -114,18 +114,6 @@ a:not([class*="no-underline"]) {
   width: max-content;
 }
 
-@keyframes tool-marquee-forward {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.tool-marquee {
-  display: flex;
-  width: max-content;
-  animation: tool-marquee-forward 42s linear infinite;
-  will-change: transform;
-}
-
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
@@ -159,11 +147,6 @@ a:not([class*="no-underline"]) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .tool-marquee {
-    animation: none !important;
-    transform: none !important;
   }
 }
 

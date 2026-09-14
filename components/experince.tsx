@@ -98,10 +98,9 @@ const journey = [
     })),
 ]
 
-function ToolCard({ tool, index, duplicate = false }: {
+function ToolCard({ tool, index }: {
     tool: (typeof devTools)[number]
     index: number
-    duplicate?: boolean
 }) {
     const prefersReducedMotion = useReducedMotion()
     const [isHovered, setIsHovered] = useState(false)
@@ -148,9 +147,8 @@ function ToolCard({ tool, index, duplicate = false }: {
             onPointerMove={followPointer}
             onPointerEnter={() => setIsHovered(true)}
             onPointerLeave={resetCard}
-            aria-hidden={duplicate || undefined}
             style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformPerspective: 800 }}
-            className="group relative flex w-48 shrink-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent md:w-56"
+            className="group relative flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent"
         >
             <span
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -300,25 +298,14 @@ export default function Experience() {
                     ))}
                 </motion.div>
 
-                {/* Development tools marquee */}
+                {/* Development tools grid */}
                 <div>
-                    <motion.div variants={item} className="overflow-hidden">
+                    <motion.div variants={item}>
                         <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Tools</p>
-                        <div className="overflow-visible py-2 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-                            <div className="tool-marquee">
-                                {[false, true].map((duplicate) => (
-                                    <div key={String(duplicate)} className="flex shrink-0 gap-4 pr-4" aria-hidden={duplicate || undefined}>
-                                        {devTools.map((tool, index) => (
-                                            <ToolCard
-                                                key={`${tool.name}-${duplicate ? "duplicate" : "original"}`}
-                                                tool={tool}
-                                                index={index}
-                                                duplicate={duplicate}
-                                            />
-                                        ))}
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                            {devTools.map((tool, index) => (
+                                <ToolCard key={tool.name} tool={tool} index={index} />
+                            ))}
                         </div>
                     </motion.div>
                 </div>
