@@ -113,8 +113,8 @@ export default function Experience() {
 
         const cards = Array.from(rail.children) as HTMLElement[]
         const closestCardIndex = cards.reduce((closestIndex, card, index) => {
-            const currentDistance = Math.abs(card.offsetLeft - rail.offsetLeft - rail.scrollLeft)
-            const closestDistance = Math.abs(cards[closestIndex].offsetLeft - rail.offsetLeft - rail.scrollLeft)
+            const currentDistance = Math.abs(card.offsetTop - rail.offsetTop - rail.scrollTop)
+            const closestDistance = Math.abs(cards[closestIndex].offsetTop - rail.offsetTop - rail.scrollTop)
             return currentDistance < closestDistance ? index : closestIndex
         }, 0)
 
@@ -126,7 +126,7 @@ export default function Experience() {
         const card = rail?.children[index] as HTMLElement | undefined
         if (!rail || !card) return
 
-        rail.scrollTo({ left: card.offsetLeft - rail.offsetLeft, behavior: "smooth" })
+        rail.scrollTo({ top: card.offsetTop - rail.offsetTop, behavior: "smooth" })
     }
 
     return (
@@ -165,7 +165,7 @@ export default function Experience() {
                     <div className="mb-6 flex items-end justify-between gap-4">
                         <div>
                             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted">Journey</p>
-                            <p className="mt-2 text-sm text-text-secondary">Scroll horizontally to explore each milestone.</p>
+                            <p className="mt-2 text-sm text-text-secondary">Scroll vertically to explore each milestone.</p>
                         </div>
                         <p className="text-sm font-semibold tabular-nums text-text-muted" aria-hidden="true">
                             {String(activeJourneyIndex + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")}
@@ -177,13 +177,13 @@ export default function Experience() {
                             ref={journeyRailRef}
                             onScroll={updateJourneyProgress}
                             tabIndex={0}
-                            aria-label="Education and work experience. Scroll horizontally to view more."
-                            className="flex min-w-0 flex-1 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                            aria-label="Education and work experience. Scroll vertically to view more."
+                            className="flex h-72 min-w-0 flex-1 snap-y snap-mandatory flex-col gap-5 overflow-y-auto overscroll-y-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-80"
                         >
                             {journey.map((entry) => (
                                 <article
                                     key={`${entry.category}-${entry.title}`}
-                                    className="flex min-h-64 min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-7 transition-colors hover:border-accent md:min-h-72 md:p-10"
+                                    className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-7 transition-colors hover:border-accent md:p-10"
                                 >
                                     <div>
                                         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-accent">{entry.category}</p>
