@@ -27,7 +27,7 @@ const projects = [
     title: 'Luxe Realty',
     description: '',
     image: '/realestate/hero.png',
-    tags: ['Next.js', 'Framer Motion', 'Supabase', 'Postgre'],
+    tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Supabase', 'Postgre'],
     liveLink: 'https://realestate-4un36rcex-temis-projects-5cf1e031.vercel.app/',
     githubLink: '#',
   },
@@ -36,7 +36,7 @@ const projects = [
     title: 'Kinetic Apex',
     description: 'A fitness website with a focus on the user experience and animations.',
     image: '/gymwrath/hero.png',
-    tags: ['Next.js', 'Framer Motion'],
+    tags: ['Next.js', 'TypeScript', 'Framer Motion'],
     liveLink: 'https://gymwarth.vercel.app/',
     githubLink: '#',
   },
@@ -45,7 +45,7 @@ const projects = [
     title: 'Campus Buddy',
     description: 'A mobile app for university students to connect and share resources.',
     image: '/CampusBuddy/Campusbuddy.png',
-    tags: ['React Native', 'Expo', 'Firebase'],
+    tags: ['React Native', 'TypeScript', 'Expo', 'Firebase'],
     liveLink: '#',
     githubLink: '#',
   },
@@ -76,7 +76,6 @@ export function Work() {
           </div>
         </motion.div>
 
-        {/* Grid */}
         <div className=" flex flex-col gap-15">
           {projects.map((project, index) => (
             <motion.div

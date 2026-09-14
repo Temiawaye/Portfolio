@@ -20,18 +20,19 @@ const specializations = [
 
 export default function About() {
     return (
-        <motion.section
+        <section
             id="about"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
             className="py-28 px-5 md:px-10 lg:px-20 bg-neutral-900 text-white"
         >
-            <div className="max-w-6xl mx-auto">
+            <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                className="max-w-6xl mx-auto"
+            >
                 {/* Header */}
                 <motion.div variants={item} className="mb-16">
-                    <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-4">About</p>
                     <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.05] max-w-2xl">
                         Code with intention.{" "}
                         <span className="text-neutral-500">Scale with precision.</span>
@@ -46,7 +47,7 @@ export default function About() {
                             I am a specialized frontend engineer focused on bridging the gap between design and engineering. I build robust digital products that look stunning and perform flawlessly.
                         </p>
                         <p>
-                            My work centers on writing clean, accessible code and creating modern architectures that scale. Whether it's a dynamic SaaS dashboard or an interactive marketing site, I bring ideas to life on the web.
+                            My work centers on writing clean, accessible code and creating modern architectures that scale. Whether it&apos;s a dynamic SaaS dashboard or an interactive marketing site, I bring ideas to life on the web.
                         </p>
                         <p>
                             I partner with businesses and startups who value pixel-perfect implementations, seamless user experiences, and maintainable codebases.
@@ -66,7 +67,7 @@ export default function About() {
                         ))}
                     </motion.div>
                 </div>
-            </div>
-        </motion.section>
+            </motion.div>
+        </section>
     )
 }

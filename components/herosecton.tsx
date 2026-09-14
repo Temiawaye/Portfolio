@@ -41,27 +41,39 @@ export default function HeroSection() {
             // transition={{duration: 1, ease: "easeOut"}}
             className="flex flex-col justify-center items-center text-center h-dvh px-5 relative overflow-hidden"
         >
-            <motion.img
+            <motion.div
                 variants={itema}
-                src="/profile.png"
-                alt="Profile Picture"
-                className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-6 md:mb-8 border-4 border-white shadow-xl"
-            />
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                className=" mb-6 md:mb-8"
+            >
+                <div
+                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-white cursor-pointer overflow-hidden hover:scale-110 transition-transform duration-300 ease-in-out drop-shadow-xl/50 drop-shadow-gray-400/50"
+                >
+                    <img
+                        src="/profile.png"
+                        alt="Profile Picture"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            </motion.div>
+
             <motion.p 
                 variants={itema} 
-                className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6 leading-[0.9]"
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-5 leading-[0.9]"
             >
                 AWAYE <br className="md:hidden" /> TEMILOLUWA
             </motion.p>
             <motion.p 
                 variants={item} 
-                className="text-center text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10"
+                className="text-center text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-7"
             >
                 A Frontend Engineer & UI Developer
             </motion.p>
             <motion.p 
                 variants={item} 
-                className="text-center text-md md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10"
+                className="text-center text-md md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-7"
             >
                 Bringing ideas to life through performant code and thoughtful design. Specializing in frontend architecture, full-stack applications, and interactive user interfaces.
             </motion.p>
@@ -97,7 +109,7 @@ export default function HeroSection() {
             >
                 <motion.div
                     animate={{
-                        y: [0, -14, 0],
+                        y: [0, -12, 0],
                         scale: [1, 1.08, 1],
                     }}
                     transition={{
@@ -107,7 +119,7 @@ export default function HeroSection() {
                         repeat: Infinity,
                     }}
                 >
-                    <ArrowDown className="text-gray-400 w-8 h-8 " />
+                    <ArrowDown className="text-gray-400 w-7 h-7 " />
                 </motion.div>
             </motion.div>
 
