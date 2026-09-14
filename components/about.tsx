@@ -42,7 +42,7 @@ export default function About() {
                 {/* Content grid */}
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Left: main copy */}
-                    <motion.div variants={item} className="space-y-6 text-text-secondary text-lg leading-relaxed">
+                    <motion.div variants={item} className="space-y-6 text-justify text-text-secondary text-lg leading-relaxed">
                         <p>
                             I am a specialized frontend engineer focused on bridging the gap between design and engineering. I build robust digital products that look stunning and perform flawlessly.
                         </p>
