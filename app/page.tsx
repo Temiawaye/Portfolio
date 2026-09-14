@@ -7,7 +7,7 @@ import { Work } from "@/components/work";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-50 text-neutral-900">
+    <main className="min-h-screen bg-bg-primary text-text-primary">
       <HeroSection />
       <About />
       <Experience />
@@ -17,4 +17,3 @@ export default function Home() {
     </main>
   );
 }
-

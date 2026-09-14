@@ -49,38 +49,38 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`flex max-w-6xl mx-auto rounded rounded-full mt-3 justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-sm  border-gray-300 
-          ${scrolled ? "bg-background backdrop-blur-md border-b border-gray-100 py-2" : "bg-transparent py-6"} `
+      className={`flex max-w-6xl mx-auto rounded-full mt-3 justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 transition-colors duration-300
+          ${scrolled ? "bg-bg-secondary/90 backdrop-blur-md py-2" : "bg-bg-primary/60 backdrop-blur-sm  py-6"} `
       }
     >
       {/* Logo */}
       <button
         onClick={() => scrollToSection('home')}
-        className="font-black text-lg tracking-tighter text-neutral-900 hover:opacity-70 transition-opacity cursor-pointer"
+        className="font-black text-lg tracking-tighter text-text-primary hover:text-link-hover active:text-link-active transition-colors cursor-pointer"
       >
-        TEMI<span className="text-neutral-400">.</span>
+        TEMI<span className="text-accent">.</span>
       </button>
 
       <div className="hidden lg:flex gap-8 items-center font-medium text-md tracking-wide">
         {['Home', 'About', 'Projects'].map((item) => (
           <button
-
+            key={item}
             onClick={() => scrollToSection(item.toLowerCase())}
-            className="text-gray-600 hover:text-black transition-colors relative group"
+            className="text-text-secondary hover:text-text-primary active:text-accent transition-colors relative group"
           >
             {item}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
           </button>
         ))}
         <button
           onClick={() => scrollToSection('contact')}
-          className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition-all hover:scale-105"
+          className="bg-button text-button-text px-5 py-2 rounded-full text-sm font-semibold hover:bg-button-hover active:bg-button-active transition-all hover:scale-105"
         >
           Get in touch
         </button>
       </div>
 
-      <button className="lg:hidden z-50" onClick={() => setMenuOpen(!menuOpen)}>
+      <button aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} className="lg:hidden z-50 text-text-primary" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
@@ -93,13 +93,13 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.4 }}
-            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 bg-bg-primary/70 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8"
           >
             {['Home', 'About', 'Projects', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-3xl font-bold hover:text-gray-500 transition-colors"
+                className="text-3xl font-bold text-text-primary hover:text-link-hover active:text-link-active transition-colors"
               >
                 {item}
               </button>

@@ -10,7 +10,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, image, tags, link }: ProjectCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
+    <div className="group relative overflow-hidden rounded-xl bg-bg-secondary border border-border-default card-lift">
       <div className="aspect-video overflow-hidden">
         <img 
           src={image} 
@@ -20,24 +20,25 @@ export function ProjectCard({ title, description, image, tags, link }: ProjectCa
       </div>
       <div className="p-6">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+          <h3 className="text-2xl font-bold text-text-primary">{title}</h3>
           {link && (
             <a 
               href={link} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              aria-label={`Open ${title}`}
+              className="no-underline text-link hover:text-link-hover active:text-link-active transition-colors"
             >
               <ExternalLink size={20} />
             </a>
           )}
         </div>
-        <p className="text-gray-600 mb-4">{description}</p>
+        <p className="text-text-secondary mb-4">{description}</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag, index) => (
             <span 
               key={index}
-              className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+              className="px-3 py-1 bg-code-bg text-text-secondary border border-border-default rounded-full text-sm"
             >
               {tag}
             </span>

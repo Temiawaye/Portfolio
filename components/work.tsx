@@ -60,17 +60,17 @@ export function Work() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.05 }}
-      className="py-28 px-5 md:px-10 lg:px-20 bg-white"
+      className="py-28 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
     >
       <div className=" max-w-6xl mx-auto">
         {/* Header */}
         <motion.div variants={item} className="mb-20 flex flex-col items-center justify-center gap-2 text-center items-center">
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-4">Projects</p>
+          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-accent mb-4">Projects</p>
           <div className=" flex flex-col items-center justify-center">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-neutral-900 leading-tight mb-3">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-text-primary leading-tight mb-3">
               SHIPPED PROJECTS.
             </h2>
-            <p className="text-neutral-500 max-w-sm text-base leading-relaxed">
+            <p className="text-text-secondary max-w-sm text-base leading-relaxed">
               A showcase of recent frontend engineering projects, highlighting modern architecture and interactive UI/UX.
             </p>
           </div>
@@ -81,7 +81,7 @@ export function Work() {
             <motion.div
               key={index}
               variants={item}
-              className={`group relative overflow-hidden rounded-3xl bg-neutral-50 border border-neutral-100 card-lift cursor-pointer 
+              className={`group relative overflow-hidden rounded-3xl bg-bg-secondary border border-border-default card-lift cursor-pointer
                 ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`
               }
             >
@@ -95,7 +95,7 @@ export function Work() {
               </div>
 
               {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/10 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
 
               {/* Content */}
               <div className="p-6">
@@ -103,14 +103,14 @@ export function Work() {
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full text-xs font-medium"
+                      className="px-2.5 py-0.5 bg-code-bg text-text-secondary border border-border-default rounded-full text-xs font-medium"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-1.5 group-hover:text-neutral-600 transition-colors">{project.title}</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">{project.description}</p>
+                <h3 className="text-xl font-bold text-text-primary mb-1.5 group-hover:text-accent-hover transition-colors">{project.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{project.description}</p>
               </div>
 
               {/* Visit links */}
@@ -126,7 +126,9 @@ export function Work() {
                 {project.liveLink && (
                   <a
                     href={project.liveLink}
-                    className="bg-neutral-900/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-neutral-800 hover:shadow-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="no-underline bg-button text-button-text text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-button-hover active:bg-button-active transition-colors"
                   >
                     Live Demo
                   </a>

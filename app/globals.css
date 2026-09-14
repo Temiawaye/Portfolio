@@ -1,23 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
-  --accent: #1a1a1a;
-  --muted: #737373;
-  --border: #e5e5e5;
+  color-scheme: dark;
+
+  --bg-primary: #000000;
+  --bg-secondary: #18181b;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+
+  --accent: #bf5fff;
+  --accent-hover: #d49aff;
+  --accent-active: #af55ff;
+  --text-on-accent: #000000;
+
+  --link-default: var(--accent);
+  --link-hover: var(--accent-hover);
+  --link-active: var(--accent-active);
+
+  --button-bg: var(--accent);
+  --button-bg-hover: var(--accent-hover);
+  --button-bg-active: var(--accent-active);
+  --button-text: var(--text-on-accent);
+
+  --border-default: #333338;
+  --divider: var(--border-default);
+  --border-control: #71717a;
+  --focus-ring: var(--accent);
+
+  --code-bg: #101012;
+  --code-text: var(--text-primary);
+  --syntax-function: var(--text-primary);
+  --syntax-keyword: var(--accent);
+  --syntax-operator: var(--accent);
+  --syntax-string: var(--accent-hover);
+  --syntax-number: var(--accent-hover);
+  --syntax-comment: var(--text-muted);
+  --syntax-punctuation: var(--text-muted);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-text-on-accent: var(--text-on-accent);
+  --color-link: var(--link-default);
+  --color-link-hover: var(--link-hover);
+  --color-link-active: var(--link-active);
+  --color-button: var(--button-bg);
+  --color-button-hover: var(--button-bg-hover);
+  --color-button-active: var(--button-bg-active);
+  --color-button-text: var(--button-text);
+  --color-border-default: var(--border-default);
+  --color-border-control: var(--border-control);
+  --color-code-bg: var(--code-bg);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,8 +76,18 @@ body {
 }
 
 ::selection {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+a:not([class*="no-underline"]) {
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.2em;
 }
 
 /* Scrollbar */
@@ -34,10 +95,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #d4d4d4;
+  background-color: var(--border-control);
   border-radius: 20px;
 }
 
@@ -55,7 +116,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #0a0a0a 0%, #525252 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -65,7 +126,7 @@ body {
 .section-divider {
   width: 60px;
   height: 3px;
-  background: #0a0a0a;
+  background: var(--divider);
   margin: 0 auto;
 }
 
@@ -75,7 +136,18 @@ body {
 }
 .card-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 60px rgba(191, 95, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Noise texture overlay */

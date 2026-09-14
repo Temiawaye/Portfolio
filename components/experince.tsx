@@ -2,9 +2,6 @@
 
 import { easeOut, motion } from 'motion/react';
 import {
-    SiAdobeillustrator,
-    SiAdobephotoshop,
-    SiCoreldraw,
     SiReact,
     SiNextdotjs,
     SiTailwindcss,
@@ -53,7 +50,7 @@ const designTools = [
 const devTools = [
     { icon: SiReact, color: "#61DAFB", name: "React" },
     { icon: SiExpo, color: "#", name: "React Expo" },
-    { icon: SiNextdotjs, color: "#000000", name: "Next.js" },
+    { icon: SiNextdotjs, color: "var(--text-primary)", name: "Next.js" },
     { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
     { icon: SiJavascript, color: "#FF9A00", name: "JavaScript" },
     { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind" },
@@ -98,13 +95,13 @@ export default function Experience() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
-            className="py-28 px-5 md:px-10 lg:px-20 bg-neutral-50"
+            className="py-28 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
         >
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <motion.div variants={item} className="text-center mb-20">
-                    <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-4">Experience</p>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight text-neutral-900">
+                    <p className="text-xs font-semibold tracking-[0.3em] uppercase text-accent mb-4">Experience</p>
+                    <h2 className="text-4xl md:text-6xl font-black tracking-tight text-text-primary">
                         Numbers that speak.
                     </h2>
                 </motion.div>
@@ -112,12 +109,12 @@ export default function Experience() {
                 {/* Stats row */}
                 <motion.div
                     variants={item}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-200 rounded-2xl overflow-hidden mb-20"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border-default border border-border-default rounded-2xl overflow-hidden mb-20"
                 >
                     {stats.map((s, i) => (
-                        <div key={i} className="bg-white flex flex-col items-center justify-center py-10 px-6 text-center">
-                            <p className="text-5xl font-black text-neutral-900 tracking-tight">{s.value}</p>
-                            <p className="text-sm text-neutral-500 mt-2 font-medium">{s.label}</p>
+                        <div key={i} className="bg-bg-secondary flex flex-col items-center justify-center py-10 px-6 text-center">
+                            <p className="text-5xl font-black text-text-primary tracking-tight">{s.value}</p>
+                            <p className="text-sm text-text-muted mt-2 font-medium">{s.label}</p>
                         </div>
                     ))}
                 </motion.div>
@@ -125,34 +122,34 @@ export default function Experience() {
                 {/* Experience & Education */}
                 <div className="grid md:grid-cols-2 gap-12 mb-20">
                     <motion.div variants={item} className="space-y-8">
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Work Experience</p>
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Work Experience</p>
                         <div className="space-y-6">
                             {experiences.map((exp, i) => (
-                                <div key={i} className="bg-white p-6 rounded-2xl border border-neutral-200 card-lift hover:shadow-md transition-shadow">
-                                    <h3 className="font-bold text-xl text-neutral-900">{exp.role}</h3>
-                                    <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1 mb-3">
+                                <div key={i} className="bg-bg-secondary p-6 rounded-2xl border border-border-default card-lift hover:border-accent transition-colors">
+                                    <h3 className="font-bold text-xl text-text-primary">{exp.role}</h3>
+                                    <div className="flex items-center gap-2 text-sm text-text-muted mt-1 mb-3">
                                         <span className="font-semibold">{exp.company}</span>
                                         <span>•</span>
                                         <span>{exp.date}</span>
                                     </div>
-                                    <p className="text-neutral-600 text-sm leading-relaxed">{exp.desc}</p>
+                                    <p className="text-text-secondary text-sm leading-relaxed">{exp.desc}</p>
                                 </div>
                             ))}
                         </div>
                     </motion.div>
 
                     <motion.div variants={item} className="space-y-8">
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Education</p>
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Education</p>
                         <div className="space-y-6">
                             {education.map((edu, i) => (
-                                <div key={i} className="bg-white p-6 rounded-2xl border border-neutral-200 card-lift hover:shadow-md transition-shadow">
-                                    <h3 className="font-bold text-xl text-neutral-900">{edu.degree}</h3>
-                                    <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1 mb-3">
+                                <div key={i} className="bg-bg-secondary p-6 rounded-2xl border border-border-default card-lift hover:border-accent transition-colors">
+                                    <h3 className="font-bold text-xl text-text-primary">{edu.degree}</h3>
+                                    <div className="flex items-center gap-2 text-sm text-text-muted mt-1 mb-3">
                                         <span className="font-semibold">{edu.school}</span>
                                         <span>•</span>
                                         <span>{edu.date}</span>
                                     </div>
-                                    <p className="text-neutral-600 text-sm leading-relaxed">{edu.desc}</p>
+                                    <p className="text-text-secondary text-sm leading-relaxed">{edu.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -163,19 +160,19 @@ export default function Experience() {
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Design Tools and collaboration tools*/}
                     <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Design Tools and Collaboration Tools</p>
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Design Tools and Collaboration Tools</p>
                         <div className="grid grid-cols-2 gap-4">
                             {designTools.map((tool, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-none hover:shadow-md transition-all card-lift group"
+                                    className="flex items-center gap-4 p-5 rounded-2xl border border-border-default bg-bg-secondary hover:border-accent transition-all card-lift group"
                                 >
                                     <tool.icon
                                         size={32}
                                         style={{ color: tool.color }}
                                         className="transition-transform group-hover:scale-110 duration-300"
                                     />
-                                    <span className="font-semibold text-neutral-700">{tool.name}</span>
+                                    <span className="font-semibold text-text-secondary">{tool.name}</span>
                                 </div>
                             ))}
                         </div>
@@ -183,19 +180,19 @@ export default function Experience() {
 
                     {/* Dev Tools */}
                     <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 mb-6">Development Stack</p>
+                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Stack</p>
                         <div className="grid grid-cols-2 gap-4">
                             {devTools.map((tool, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-none hover:shadow-md transition-all card-lift group"
+                                    className="flex items-center gap-4 p-5 rounded-2xl border border-border-default bg-bg-secondary hover:border-accent transition-all card-lift group"
                                 >
                                     <tool.icon
                                         size={32}
                                         style={{ color: tool.color }}
                                         className="transition-transform group-hover:scale-110 duration-300"
                                     />
-                                    <span className="font-semibold text-neutral-700">{tool.name}</span>
+                                    <span className="font-semibold text-text-secondary">{tool.name}</span>
                                 </div>
                             ))}
                         </div>

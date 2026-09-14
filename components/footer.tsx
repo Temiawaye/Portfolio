@@ -12,16 +12,17 @@ const socials = [
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-neutral-950 text-neutral-400 py-8 px-5 lg:px-20">
+        <footer className="w-full bg-bg-secondary text-text-secondary border-t border-border-default py-8 px-5 lg:px-20">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between items-center gap-4">
-                <p className="font-black text-white text-lg tracking-tighter">TEMI<span className="text-neutral-500">.</span></p>
-                <p className="text-sm text-neutral-500">© 2025 Awaye Temiloluwa. All rights reserved.</p>
+                <p className="font-black text-text-primary text-lg tracking-tighter">TEMI<span className="text-accent">.</span></p>
+                <p className="text-sm text-text-muted">© 2025 Awaye Temiloluwa. All rights reserved.</p>
                 <div className="flex gap-4">
                     {socials.map(({ icon: Icon, href }, i) => (
                         <a
                             key={i}
                             href={href}
-                            className="text-neutral-600 hover:text-white transition-colors"
+                            aria-label={`Social link ${i + 1}`}
+                            className="no-underline text-text-muted hover:text-link-hover active:text-link-active transition-colors"
                         >
                             <Icon size={18} />
                         </a>

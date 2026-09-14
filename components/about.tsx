@@ -22,7 +22,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="py-28 px-5 md:px-10 lg:px-20 bg-neutral-900 text-white"
+            className="py-28 px-5 md:px-10 lg:px-20 bg-bg-secondary text-text-primary"
         >
             <motion.div
                 variants={container}
@@ -35,14 +35,14 @@ export default function About() {
                 <motion.div variants={item} className="mb-16">
                     <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.05] max-w-2xl">
                         Code with intention.{" "}
-                        <span className="text-neutral-500">Scale with precision.</span>
+                        <span className="text-text-secondary">Scale with precision.</span>
                     </h2>
                 </motion.div>
 
                 {/* Content grid */}
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Left: main copy */}
-                    <motion.div variants={item} className="space-y-6 text-neutral-300 text-lg leading-relaxed">
+                    <motion.div variants={item} className="space-y-6 text-text-secondary text-lg leading-relaxed">
                         <p>
                             I am a specialized frontend engineer focused on bridging the gap between design and engineering. I build robust digital products that look stunning and perform flawlessly.
                         </p>
@@ -59,10 +59,10 @@ export default function About() {
                         {specializations.map((spec, i) => (
                             <div
                                 key={i}
-                                className="border border-neutral-700 rounded-2xl p-6 hover:border-neutral-400 transition-colors"
+                                className="border border-border-default bg-code-bg rounded-2xl p-6 hover:border-accent transition-colors"
                             >
                                 <p className="font-black text-xl mb-1">{spec.label}</p>
-                                <p className="text-neutral-400 text-sm leading-relaxed">{spec.desc}</p>
+                                <p className="text-text-muted text-sm leading-relaxed">{spec.desc}</p>
                             </div>
                         ))}
                     </motion.div>

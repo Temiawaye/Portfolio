@@ -39,7 +39,7 @@ export default function HeroSection() {
             // initial={{opacity: 0, y: 40 }} 
             // animate={{opacity: 1, y: 0 }} 
             // transition={{duration: 1, ease: "easeOut"}}
-            className="flex flex-col justify-center items-center text-center h-dvh px-5 relative overflow-hidden"
+            className="flex flex-col justify-center items-center text-center h-dvh px-5 relative overflow-hidden bg-bg-primary text-text-primary"
         >
             <motion.div
                 variants={itema}
@@ -49,7 +49,7 @@ export default function HeroSection() {
                 className=" mb-6 md:mb-8"
             >
                 <div
-                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-white cursor-pointer overflow-hidden hover:scale-110 transition-transform duration-300 ease-in-out drop-shadow-xl/50 drop-shadow-gray-400/50"
+                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-border-default cursor-pointer overflow-hidden hover:scale-120 transition-all duration-300 ease-in-out shadow-xl shadow-accent/25"
                 >
                     <img
                         src="/profile.png"
@@ -61,19 +61,19 @@ export default function HeroSection() {
 
             <motion.p 
                 variants={itema} 
-                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-5 leading-[0.9]"
+                className="text-5xl md:text-7xl lg:text-8xl font-black mb-5 leading-[0.9]"
             >
                 AWAYE <br className="md:hidden" /> TEMILOLUWA
             </motion.p>
             <motion.p 
                 variants={item} 
-                className="text-center text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-7"
+                className="text-center text-lg md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-6 md:mb-7"
             >
                 A Frontend Engineer & UI Developer
             </motion.p>
             <motion.p 
                 variants={item} 
-                className="text-center text-md md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-7"
+                className="text-center text-md md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-7"
             >
                 Bringing ideas to life through performant code and thoughtful design. Specializing in frontend architecture, full-stack applications, and interactive user interfaces.
             </motion.p>
@@ -83,14 +83,14 @@ export default function HeroSection() {
                 className="flex gap-4 justify-center"
             >
                 <button
-                    onClick={() => document.getElementById('pojects')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-gray-900 text-white px-8 py-3 rounded-2xl hover:bg-gray-800 transition-colors cursor-pointer"
+                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="bg-button text-button-text px-8 py-3 rounded-2xl font-semibold hover:bg-button-hover active:bg-button-active transition-colors cursor-pointer"
                 >
                     View My Work
                 </button>
                 <button
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-2xl hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+                    className="border-2 border-border-control bg-transparent text-text-primary px-8 py-3 rounded-2xl hover:bg-bg-secondary hover:border-accent-hover active:border-accent-active transition-colors cursor-pointer"
                 >
                     Get In Touch
                 </button>
@@ -119,7 +119,7 @@ export default function HeroSection() {
                         repeat: Infinity,
                     }}
                 >
-                    <ArrowDown className="text-gray-400 w-7 h-7 " />
+                    <ArrowDown className="text-accent w-7 h-7" />
                 </motion.div>
             </motion.div>
 
