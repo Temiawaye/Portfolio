@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { easeOut, motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react';
 import {
     SiReact,
@@ -98,9 +98,33 @@ const journey = [
     })),
 ]
 
-function ToolCard({ tool, index }: {
+const toolRelations: Record<string, string[]> = {
+    React: ["Next.js", "React Expo", "TypeScript"],
+    "React Expo": ["React", "TypeScript", "Firebase"],
+    "Next.js": ["React", "TypeScript", "Vercel"],
+    TypeScript: ["JavaScript", "React", "Node.js"],
+    JavaScript: ["TypeScript", "Node.js", "React"],
+    Tailwind: ["React", "Next.js"],
+    "Node.js": ["JavaScript", "TypeScript", "PostgreSql"],
+    PostgreSql: ["Node.js", "Supabase"],
+    Supabase: ["PostgreSql", "Next.js"],
+    Firebase: ["React Expo", "React"],
+    Vercel: ["Next.js", "Git", "Github"],
+    HuggingFace: ["Python", "Next.js"],
+    Figma: ["Framer", "React"],
+    Framer: ["Figma", "React"],
+    Git: ["Github", "Vercel"],
+    Github: ["Git", "Vercel"],
+}
+
+type ToolConnection = { x1: number; y1: number; x2: number; y2: number }
+
+function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
     tool: (typeof devTools)[number]
     index: number
+    isAutoActive: boolean
+    onInteractionChange: (isInteracting: boolean) => void
+    cardRef: (element: HTMLDivElement | null) => void
 }) {
     const prefersReducedMotion = useReducedMotion()
     const [isHovered, setIsHovered] = useState(false)
@@ -126,12 +150,16 @@ function ToolCard({ tool, index }: {
 
     const resetCard = () => {
         setIsHovered(false)
+        onInteractionChange(false)
         rotateX.set(0)
         rotateY.set(0)
     }
 
+    const isHighlighted = isHovered || isAutoActive
+
     return (
         <motion.div
+            ref={cardRef}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
             whileInView={prefersReducedMotion ? undefined : {
                 opacity: 1,
@@ -145,19 +173,45 @@ function ToolCard({ tool, index }: {
             }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             onPointerMove={followPointer}
-            onPointerEnter={() => setIsHovered(true)}
+            onPointerEnter={() => {
+                setIsHovered(true)
+                onInteractionChange(true)
+            }}
             onPointerLeave={resetCard}
             style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformPerspective: 800 }}
-            className="group relative flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent"
+            className={`group relative z-10 flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border bg-bg-secondary p-5 transition-colors ${
+                isHighlighted ? "border-accent" : "border-border-default hover:border-accent"
+            }`}
         >
-            <span
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            <motion.span
+                animate={{
+                    opacity: prefersReducedMotion
+                        ? 0
+                        : isHovered
+                            ? 0.85
+                            : isAutoActive
+                                ? [0, 0.65, 0.22]
+                                : 0,
+                }}
+                transition={{ duration: isHovered ? 0.2 : 1.9, ease: "easeOut" }}
+                className="pointer-events-none absolute inset-0"
                 style={{ background: "radial-gradient(140px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(191, 95, 255, 0.16), transparent 70%)" }}
                 aria-hidden="true"
             />
             <motion.span
-                animate={prefersReducedMotion || !isHovered ? { scale: 1, rotate: 0 } : { scale: 1.1, rotate: 4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                animate={
+                    prefersReducedMotion
+                        ? { scale: 1, rotate: 0, y: 0 }
+                        : isHovered
+                            ? { scale: 1.1, rotate: 4, y: -4 }
+                            : isAutoActive
+                                ? { scale: [1, 1.08, 1.03], rotate: [0, 4, 1], y: [0, -4, 0] }
+                                : { scale: 1, rotate: 0, y: 0 }
+                }
+                transition={isHovered
+                    ? { type: "spring", stiffness: 300, damping: 18 }
+                    : { duration: 1.6, ease: "easeInOut" }
+                }
                 className="relative z-10 flex"
             >
                 <tool.icon size={32} style={{ color: tool.color }} />
@@ -168,8 +222,67 @@ function ToolCard({ tool, index }: {
 }
 
 export default function Experience() {
+    const prefersReducedMotion = useReducedMotion()
     const journeyRailRef = useRef<HTMLDivElement>(null)
+    const toolGridRef = useRef<HTMLDivElement>(null)
+    const toolCardRefs = useRef<Array<HTMLDivElement | null>>([])
     const [activeJourneyIndex, setActiveJourneyIndex] = useState(0)
+    const [activeToolIndex, setActiveToolIndex] = useState(0)
+    const [isToolCyclePaused, setIsToolCyclePaused] = useState(false)
+    const [toolConnections, setToolConnections] = useState<ToolConnection[]>([])
+
+    useEffect(() => {
+        if (isToolCyclePaused) return
+
+        const cycle = window.setInterval(() => {
+            setActiveToolIndex((currentIndex) => (currentIndex + 1) % devTools.length)
+        }, 2400)
+
+        return () => window.clearInterval(cycle)
+    }, [isToolCyclePaused])
+
+    useEffect(() => {
+        const updateConnections = () => {
+            if (prefersReducedMotion || isToolCyclePaused) {
+                setToolConnections([])
+                return
+            }
+
+            const grid = toolGridRef.current
+            const sourceCard = toolCardRefs.current[activeToolIndex]
+            if (!grid || !sourceCard) return
+
+            const gridBounds = grid.getBoundingClientRect()
+            const sourceBounds = sourceCard.getBoundingClientRect()
+            const relatedTools = toolRelations[devTools[activeToolIndex].name] ?? []
+            const source = {
+                x: sourceBounds.left - gridBounds.left + sourceBounds.width / 2,
+                y: sourceBounds.top - gridBounds.top + sourceBounds.height / 2,
+            }
+
+            setToolConnections(relatedTools.flatMap((relatedName) => {
+                const relatedIndex = devTools.findIndex((tool) => tool.name === relatedName)
+                const targetCard = toolCardRefs.current[relatedIndex]
+                if (!targetCard) return []
+
+                const targetBounds = targetCard.getBoundingClientRect()
+                return [{
+                    x1: source.x,
+                    y1: source.y,
+                    x2: targetBounds.left - gridBounds.left + targetBounds.width / 2,
+                    y2: targetBounds.top - gridBounds.top + targetBounds.height / 2,
+                }]
+            }))
+        }
+
+        const animationFrame = requestAnimationFrame(updateConnections)
+        window.addEventListener("resize", updateConnections)
+
+        return () => {
+            cancelAnimationFrame(animationFrame)
+            window.removeEventListener("resize", updateConnections)
+        }
+    }, [activeToolIndex, isToolCyclePaused, prefersReducedMotion])
 
     const updateJourneyProgress = () => {
         const rail = journeyRailRef.current
@@ -302,9 +415,37 @@ export default function Experience() {
                 <div>
                     <motion.div variants={item}>
                         <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Tools</p>
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                        <div ref={toolGridRef} className="relative grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                            {!prefersReducedMotion && (
+                                <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible" aria-hidden="true">
+                                    {toolConnections.map((connection, index) => (
+                                        <motion.line
+                                            key={`${activeToolIndex}-${index}`}
+                                            x1={connection.x1}
+                                            y1={connection.y1}
+                                            x2={connection.x2}
+                                            y2={connection.y2}
+                                            stroke="var(--accent)"
+                                            strokeWidth="1"
+                                            strokeDasharray="4 7"
+                                            initial={{ pathLength: 0, opacity: 0 }}
+                                            animate={{ pathLength: 1, opacity: [0, 0.5, 0.16] }}
+                                            transition={{ duration: 1.9, ease: "easeInOut" }}
+                                        />
+                                    ))}
+                                </svg>
+                            )}
                             {devTools.map((tool, index) => (
-                                <ToolCard key={tool.name} tool={tool} index={index} />
+                                <ToolCard
+                                    key={tool.name}
+                                    tool={tool}
+                                    index={index}
+                                    isAutoActive={!isToolCyclePaused && activeToolIndex === index}
+                                    onInteractionChange={setIsToolCyclePaused}
+                                    cardRef={(element) => {
+                                        toolCardRefs.current[index] = element
+                                    }}
+                                />
                             ))}
                         </div>
                     </motion.div>
