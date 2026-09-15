@@ -57,7 +57,7 @@ export default function SectionProgress() {
         <nav
             aria-label="Page section progress"
             style={{ left: "clamp(6rem, 8vw, 8rem)" }}
-            className={`fixed top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-300 sm:block ${
+            className={`fixed top-1/2 z-40 -translate-y-1/2 transition-opacity duration-300 ${
                 isVisible
                     ? "pointer-events-auto opacity-100"
                     : "pointer-events-none opacity-0"
