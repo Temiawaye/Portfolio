@@ -72,7 +72,7 @@ export default function HeroSection() {
             <div
                 className="pointer-events-none absolute inset-0"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.36) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.36) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.6) 1px, transparent 1px)",
                     backgroundSize: "42px 42px",
                     maskImage: "radial-gradient(circle at center, black 12%, transparent 72%)",
                 }}
