@@ -80,7 +80,7 @@ export default function Navbar() {
         TEMI<span className="text-accent">.</span>
       </button>
 
-      <div className="hidden lg:flex gap-8 items-center font-medium text-md tracking-wide">
+      <div className="hidden lg:flex gap-8 items-center font-medium text-xs tracking-wide">
         {navigationItems.map((item) => (
           <button
             key={item.id}
