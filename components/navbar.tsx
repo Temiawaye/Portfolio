@@ -98,10 +98,10 @@ export default function Navbar() {
             key={item.id}
             aria-label={item.label}
             onClick={() => scrollToSection(item.id)}
-            className="relative text-text-primary transition-colors group hover:text-link-hover active:text-link-active"
+            className="group relative rounded-sm text-text-primary transition-colors hover:text-link-hover active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender"
           >
             <NavigationLabel item={item} />
-            <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"></span>
+            <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
           </button>
         ))}
       </div>
