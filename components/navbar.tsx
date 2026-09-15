@@ -5,11 +5,22 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from "motion/react";
 
 const navigationItems = [
-  { label: "About", id: "about" },
-  { label: "Projects", id: "projects" },
-  { label: "Skills", id: "experience" },
-  { label: "Contact", id: "contact" },
+  { label: "About", text: "about", prefix: "~/", id: "about" },
+  { label: "Projects", text: "projects", prefix: "~/", id: "projects" },
+  { label: "Skills", text: "skills", prefix: "~/", id: "experience" },
+  { label: "Contact", text: "contact me", prefix: ">", id: "contact" },
 ]
+
+function NavigationLabel({ item }: { item: (typeof navigationItems)[number] }) {
+  return (
+    <>
+      <span className={item.prefix === ">" ? "mr-2 text-electric-lavender" : "text-electric-lavender"} aria-hidden="true">
+        {item.prefix}
+      </span>
+      <span>{item.text}</span>
+    </>
+  );
+}
 
 export default function Navbar() {
 
@@ -73,10 +84,11 @@ export default function Navbar() {
         {navigationItems.map((item) => (
           <button
             key={item.id}
+            aria-label={item.label}
             onClick={() => scrollToSection(item.id)}
-            className="text-text-secondary hover:text-text-primary active:text-accent transition-colors relative group"
+            className="relative text-text-primary transition-colors group hover:text-link-hover active:text-link-active"
           >
-            {item.label}
+            <NavigationLabel item={item} />
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
           </button>
         ))}
@@ -100,10 +112,11 @@ export default function Navbar() {
             {navigationItems.map((item) => (
               <button
                 key={item.id}
+                aria-label={item.label}
                 onClick={() => scrollToSection(item.id)}
                 className="text-3xl font-medium text-text-primary hover:text-link-hover active:text-link-active transition-colors"
               >
-                {item.label}
+                <NavigationLabel item={item} />
               </button>
             ))}
           </motion.div>
