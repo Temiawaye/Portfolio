@@ -37,14 +37,14 @@ const itemb = {
 }
 
 const developerIcons = [
-    { icon: CodeBracketIcon, label: "Code", position: { left: "6%", top: "20%" } },
-    { icon: BracketCurlyIcon, label: "Curly brackets", position: { right: "7%", top: "28%" } },
-    { icon: GitForkIcon, label: "Git fork", position: { left: "9%", bottom: "24%" } },
-    { icon: TerminalIcon, label: "Terminal", position: { right: "8%", bottom: "17%" } },
-    { icon: GitPullRequestIcon, label: "Git pull request", position: { left: "19%", top: "44%" } },
-    { icon: GitMergeIcon, label: "Git merge", position: { right: "18%", top: "51%" } },
-    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: { left: "26%", bottom: "9%" } },
-    { icon: TerminalLinuxIcon, label: "Linux terminal", position: { right: "25%", top: "13%" } },
+    { icon: CodeBracketIcon, label: "Code", position: { left: "26%", top: "20%" } },
+    { icon: BracketCurlyIcon, label: "Curly brackets", position: { right: "20%", top: "44%" } },
+    { icon: GitForkIcon, label: "Git fork", position: { left: "20%", bottom: "30%" } },
+    { icon: TerminalIcon, label: "Terminal", position: { right: "25%", bottom: "17%" } },
+    { icon: GitPullRequestIcon, label: "Git pull request", position: { left: "20%", top: "44%" } },
+    { icon: GitMergeIcon, label: "Git merge", position: { right: "20%", bottom: "30%" } },
+    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: { left: "25%", bottom: "17%" } },
+    { icon: TerminalLinuxIcon, label: "Linux terminal", position: { right: "27%", top: "20%" } },
 ]
 
 export default function HeroSection() {
@@ -72,7 +72,7 @@ export default function HeroSection() {
             <div
                 className="pointer-events-none absolute inset-0"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.8) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.9) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.9) 1px, transparent 1px)",
                     backgroundSize: "42px 42px",
                     maskImage: "radial-gradient(circle at center, black 12%, transparent 72%)",
                 }}
@@ -85,8 +85,8 @@ export default function HeroSection() {
                     title={label}
                     aria-label={label}
                     animate={prefersReducedMotion ? undefined : {
-                        y: [0, -6, 0],
-                        rotate: [-2, 2, -2],
+                        y: [0, -8, 0],
+                        rotate: [-3, 3, -3],
                     }}
                     transition={{
                         duration: 5.5 + index * 0.7,
@@ -95,7 +95,7 @@ export default function HeroSection() {
                         repeat: Infinity,
                     }}
                     style={position}
-                    className="pointer-events-none absolute z-[1] flex size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm"
+                    className="pointer-events-none absolute z-[1] flex  items-center justify-center rounded-xl  text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm"
                 >
                     <Icon width="24" height="24" aria-hidden="true" />
                 </motion.div>
@@ -115,7 +115,7 @@ export default function HeroSection() {
                     />
                 </div>
 
-                <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-sm font-semibold text-electric-lavender" aria-hidden="true">
+                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-sm font-semibold text-electric-lavender" aria-hidden="true">
                     {"{ }"}
                 </span>
             </motion.div>
@@ -170,7 +170,7 @@ export default function HeroSection() {
                     type="button"
                     aria-label="Projects"
                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-button px-6 py-3 text-base font-medium text-button-text transition-[background-color,transform] hover:bg-button-hover active:scale-[0.98] active:bg-button-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
+                    className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-button px-6 py-1 text-base font-medium text-button-text transition-[background-color,transform] hover:bg-button-hover active:scale-[0.98] active:bg-button-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-5"
                 >
                     <span aria-hidden="true">~/</span>
                     <span>projects</span>
@@ -179,7 +179,7 @@ export default function HeroSection() {
                     type="button"
                     aria-label="Contact me"
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="inline-flex min-h-12 items-center justify-center rounded-2xl border-2 border-border-control bg-bg-primary/60 px-6 py-3 text-base font-medium text-text-primary transition-[background-color,border-color,transform] hover:border-accent-hover hover:bg-bg-secondary active:scale-[0.98] active:border-accent-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
+                    className="inline-flex min-h-10 items-center justify-center rounded-2xl border-2 border-border-control bg-bg-primary/60 px-6 py-1 text-base font-medium text-text-primary transition-[background-color,border-color,transform] hover:border-accent-hover hover:bg-bg-secondary active:scale-[0.98] active:border-accent-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-5"
                 >
                     <span className="mr-2 text-electric-lavender" aria-hidden="true">{">"}</span>
                     <span>contact me</span>
