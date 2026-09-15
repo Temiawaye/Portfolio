@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 const navigationItems = [
   { label: "About", text: "about", prefix: "~/", id: "about" },
   { label: "Projects", text: "projects", prefix: "~/", id: "projects" },
-  { label: "Skills", text: "skills", prefix: "~/", id: "experience" },
+  { label: "Skills", text: "skills", prefix: "~/", id: "skills" },
   { label: "Contact", text: "contact me", prefix: ">", id: "contact" },
 ]
 
