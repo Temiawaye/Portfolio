@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="652" height="391" viewBox="309 403 652 391" role="img" aria-labelledby="title desc">
+  <title id="title">AT developer monogram</title>
+  <desc id="desc">Angular A and T with a small code symbol, in muted gray on a transparent background.</desc>
+  <g fill="#99999F">
+    <path id="letter-a" d="M349 754 564 443 775 754H716L564 531 409 754Z"/>
+    <path id="letter-t" d="M602 443H921L872 494H772V722L721 648V494H639Z"/>
+    <path id="code-left" d="M544 627 518 646 544 666V657L528 646 544 635Z"/>
+    <path id="code-slash" d="M552 672H559L577 618H570Z"/>
+    <path id="code-right" d="M584 627 610 646 584 666V657L600 646 584 635Z"/>
+  </g>
+</svg>

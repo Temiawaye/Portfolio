@@ -111,6 +111,8 @@ export default function HeroSection() {
                     <img
                         src="/profile.png"
                         alt="Profile Picture"
+                        fetchPriority="high"
+                        data-intro-essential
                         className="w-full h-full object-cover"
                     />
                 </div>

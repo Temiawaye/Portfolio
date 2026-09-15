@@ -81,12 +81,13 @@ export default function Navbar() {
         className="flex shrink-0 cursor-pointer items-center rounded-lg transition-opacity hover:opacity-85 active:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender"
       >
         <Image
-          src="/logos/logo.svg"
+          src="/logos/seclogo.svg"
           alt=""
           width={50}
           height={16}
           priority
-          className="h-8 w-auto sm:h-9"
+          data-intro-essential
+          className="h-8 w-auto sm:h-9 "
         />
       </button>
 
