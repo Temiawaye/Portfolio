@@ -37,14 +37,14 @@ const itemb = {
 }
 
 const developerIcons = [
-    { icon: CodeBracketIcon, label: "Code", position: "-left-7 top-4 sm:-left-12", visibility: "flex" },
-    { icon: BracketCurlyIcon, label: "Curly brackets", position: "-right-7 top-7 sm:-right-12", visibility: "flex" },
-    { icon: GitForkIcon, label: "Git fork", position: "-left-6 bottom-7 sm:-left-11", visibility: "flex" },
-    { icon: TerminalIcon, label: "Terminal", position: "-right-6 bottom-5 sm:-right-11", visibility: "flex" },
-    { icon: GitPullRequestIcon, label: "Git pull request", position: "-left-16 top-1/2 -translate-y-1/2", visibility: "hidden sm:flex" },
-    { icon: GitMergeIcon, label: "Git merge", position: "-right-16 top-1/2 -translate-y-1/2", visibility: "hidden sm:flex" },
-    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: "-top-12 left-4", visibility: "hidden md:flex" },
-    { icon: TerminalLinuxIcon, label: "Linux terminal", position: "-top-12 right-4", visibility: "hidden md:flex" },
+    { icon: CodeBracketIcon, label: "Code", position: "left-[5%] top-[23%] sm:left-[8%]", visibility: "flex" },
+    { icon: BracketCurlyIcon, label: "Curly brackets", position: "right-[5%] top-[27%] sm:right-[8%]", visibility: "flex" },
+    { icon: GitForkIcon, label: "Git fork", position: "bottom-[24%] left-[6%] sm:left-[11%]", visibility: "flex" },
+    { icon: TerminalIcon, label: "Terminal", position: "bottom-[19%] right-[6%] sm:right-[10%]", visibility: "flex" },
+    { icon: GitPullRequestIcon, label: "Git pull request", position: "left-[18%] top-[42%] lg:left-[14%]", visibility: "hidden sm:flex" },
+    { icon: GitMergeIcon, label: "Git merge", position: "right-[18%] top-[48%] lg:right-[14%]", visibility: "hidden sm:flex" },
+    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: "bottom-[11%] left-[24%] lg:left-[20%]", visibility: "hidden sm:flex" },
+    { icon: TerminalLinuxIcon, label: "Linux terminal", position: "right-[25%] top-[16%] lg:right-[21%]", visibility: "hidden sm:flex" },
 ]
 
 export default function HeroSection() {
@@ -79,6 +79,27 @@ export default function HeroSection() {
                 aria-hidden="true"
             />
 
+            {developerIcons.map(({ icon: Icon, label, position, visibility }, index) => (
+                <motion.div
+                    key={label}
+                    title={label}
+                    aria-label={label}
+                    animate={prefersReducedMotion ? undefined : {
+                        y: [0, -6, 0],
+                        rotate: [-2, 2, -2],
+                    }}
+                    transition={{
+                        duration: 5.5 + index * 0.7,
+                        delay: index * 0.45,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                    }}
+                    className={`pointer-events-none absolute z-[1] ${position} ${visibility} size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm`}
+                >
+                    <Icon width="24" height="24" aria-hidden="true" />
+                </motion.div>
+            ))}
+
             <motion.div
                 variants={itema}
                 className="relative z-10 mb-7 md:mb-9"
@@ -92,27 +113,6 @@ export default function HeroSection() {
                         className="w-full h-full object-cover"
                     />
                 </div>
-
-                {developerIcons.map(({ icon: Icon, label, position, visibility }, index) => (
-                    <motion.div
-                        key={label}
-                        title={label}
-                        aria-label={label}
-                        animate={prefersReducedMotion ? undefined : {
-                            y: [0, -6, 0],
-                            rotate: [-2, 2, -2],
-                        }}
-                        transition={{
-                            duration: 5.5 + index * 0.7,
-                            delay: index * 0.45,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                        }}
-                        className={`absolute ${position} ${visibility} size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm`}
-                    >
-                        <Icon width="24" height="24" aria-hidden="true" />
-                    </motion.div>
-                ))}
 
                 <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-sm font-semibold text-electric-lavender" aria-hidden="true">
                     {"{ }"}
