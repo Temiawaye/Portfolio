@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
-import { animate, easeOut, motion, useInView, useMotionValue, useReducedMotion, useTransform } from 'motion/react';
+import { useRef, useState } from 'react';
+import { easeOut, motion } from 'motion/react';
 
 const container = {
     hidden: { opacity: 0 },
@@ -12,13 +12,6 @@ const item = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } }
 }
-
-const stats = [
-    { value: "3+", label: "Years of Experience" },
-    { value: "5+", label: "Projects Completed and counting" },
-    { value: "99%", label: "Client Satisfaction" }
-]
-
 
 const experiences = [
     {
@@ -59,39 +52,6 @@ const journey = [
         ...entry,
     })),
 ]
-
-function AnimatedStatValue({ value, index }: { value: string; index: number }) {
-    const valueRef = useRef<HTMLParagraphElement>(null)
-    const isInView = useInView(valueRef, { once: true, amount: 0.8 })
-    const prefersReducedMotion = useReducedMotion()
-    const target = Number.parseInt(value, 10)
-    const suffix = value.replace(String(target), "")
-    const count = useMotionValue(prefersReducedMotion ? target : 0)
-    const roundedCount = useTransform(count, (latest) => Math.round(latest))
-
-    useEffect(() => {
-        if (!isInView) return
-
-        if (prefersReducedMotion) {
-            count.set(target)
-            return
-        }
-
-        const controls = animate(count, target, {
-            duration: 1.8,
-            delay: index * 0.15,
-            ease: easeOut,
-        })
-
-        return () => controls.stop()
-    }, [count, index, isInView, prefersReducedMotion, target])
-
-    return (
-        <p ref={valueRef} className="text-3xl md:text-5xl font-semibold text-text-primary tracking-tight">
-            <motion.span>{roundedCount}</motion.span>{suffix}
-        </p>
-    )
-}
 
 export default function Experience() {
     const journeyRailRef = useRef<HTMLDivElement>(null)
@@ -218,18 +178,6 @@ export default function Experience() {
                     </div>
                 </motion.div>
 
-                {/* Stats row */}
-                <motion.div
-                    variants={item}
-                    className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-border-default shadow-xl shadow-accent/10"
-                >
-                    {stats.map((s, i) => (
-                        <div key={i} className="bg-bg-secondary flex flex-col items-center justify-center py-10 px-6 text-center">
-                            <AnimatedStatValue value={s.value} index={i} />
-                            <p className="text-xs md:text-sm text-text-muted mt-2 font-medium">{s.label}</p>
-                        </div>
-                    ))}
-                </motion.div>
             </div>
         </motion.section>
     )
