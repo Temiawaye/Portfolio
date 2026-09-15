@@ -52,7 +52,7 @@ export default function SectionProgress() {
     return (
         <nav
             aria-label="Page section progress"
-            className={`fixed left-8 top-1/2 z-40 -translate-y-1/2 transition-opacity duration-300 ${
+            className={`fixed left-20 top-1/2 z-40 -translate-y-1/2 transition-opacity duration-300 ${
                 isVisible
                     ? "pointer-events-auto opacity-100"
                     : "pointer-events-none opacity-0"
