@@ -37,14 +37,14 @@ const itemb = {
 }
 
 const developerIcons = [
-    { icon: CodeBracketIcon, label: "Code", position: "left-[5%] top-[23%] sm:left-[8%]", visibility: "flex" },
-    { icon: BracketCurlyIcon, label: "Curly brackets", position: "right-[5%] top-[27%] sm:right-[8%]", visibility: "flex" },
-    { icon: GitForkIcon, label: "Git fork", position: "bottom-[24%] left-[6%] sm:left-[11%]", visibility: "flex" },
-    { icon: TerminalIcon, label: "Terminal", position: "bottom-[19%] right-[6%] sm:right-[10%]", visibility: "flex" },
-    { icon: GitPullRequestIcon, label: "Git pull request", position: "left-[18%] top-[42%] lg:left-[14%]", visibility: "hidden sm:flex" },
-    { icon: GitMergeIcon, label: "Git merge", position: "right-[18%] top-[48%] lg:right-[14%]", visibility: "hidden sm:flex" },
-    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: "bottom-[11%] left-[24%] lg:left-[20%]", visibility: "hidden sm:flex" },
-    { icon: TerminalLinuxIcon, label: "Linux terminal", position: "right-[25%] top-[16%] lg:right-[21%]", visibility: "hidden sm:flex" },
+    { icon: CodeBracketIcon, label: "Code", position: { left: "6%", top: "20%" } },
+    { icon: BracketCurlyIcon, label: "Curly brackets", position: { right: "7%", top: "28%" } },
+    { icon: GitForkIcon, label: "Git fork", position: { left: "9%", bottom: "24%" } },
+    { icon: TerminalIcon, label: "Terminal", position: { right: "8%", bottom: "17%" } },
+    { icon: GitPullRequestIcon, label: "Git pull request", position: { left: "19%", top: "44%" } },
+    { icon: GitMergeIcon, label: "Git merge", position: { right: "18%", top: "51%" } },
+    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: { left: "26%", bottom: "9%" } },
+    { icon: TerminalLinuxIcon, label: "Linux terminal", position: { right: "25%", top: "13%" } },
 ]
 
 export default function HeroSection() {
@@ -79,7 +79,7 @@ export default function HeroSection() {
                 aria-hidden="true"
             />
 
-            {developerIcons.map(({ icon: Icon, label, position, visibility }, index) => (
+            {developerIcons.map(({ icon: Icon, label, position }, index) => (
                 <motion.div
                     key={label}
                     title={label}
@@ -94,7 +94,8 @@ export default function HeroSection() {
                         ease: "easeInOut",
                         repeat: Infinity,
                     }}
-                    className={`pointer-events-none absolute z-[1] ${position} ${visibility} size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm`}
+                    style={position}
+                    className="pointer-events-none absolute z-[1] flex size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm"
                 >
                     <Icon width="24" height="24" aria-hidden="true" />
                 </motion.div>
