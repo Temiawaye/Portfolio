@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from "motion/react";
 
@@ -74,10 +75,19 @@ export default function Navbar() {
     >
       {/* Logo */}
       <button
+        type="button"
+        aria-label="Go to home"
         onClick={() => scrollToSection('home')}
-        className="font-bold text-lg tracking-tighter text-text-primary hover:text-link-hover active:text-link-active transition-colors cursor-pointer"
+        className="flex shrink-0 cursor-pointer items-center rounded-lg transition-opacity hover:opacity-85 active:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender"
       >
-        TEMI<span className="text-accent">.</span>
+        <Image
+          src="/logo.svg"
+          alt=""
+          width={100}
+          height={36}
+          priority
+          className="h-8 w-auto sm:h-9"
+        />
       </button>
 
       <div className="hidden lg:flex gap-8 items-center font-medium text-xs tracking-wide">
