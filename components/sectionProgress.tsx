@@ -12,7 +12,6 @@ const sections = [
 
 export default function SectionProgress() {
     const [activeIndex, setActiveIndex] = useState(0)
-    const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {
         let animationFrame = 0
@@ -26,7 +25,6 @@ export default function SectionProgress() {
             }, 0)
 
             setActiveIndex(nextActiveIndex)
-            setIsVisible(window.scrollY >= window.innerHeight * 0.6)
         }
 
         const handleScroll = () => {
@@ -57,11 +55,7 @@ export default function SectionProgress() {
         <nav
             aria-label="Page section progress"
             style={{ left: "clamp(6rem, 8vw, 8rem)" }}
-            className={`fixed top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-300 sm:block ${
-                isVisible
-                    ? "pointer-events-auto opacity-100"
-                    : "pointer-events-none opacity-0"
-            }`}
+            className="fixed top-1/2 z-40 -translate-y-1/2 max-[639px]:hidden"
         >
             <div className="relative flex h-[min(72vh,42rem)] min-h-80 w-8 shrink-0 flex-col items-center justify-between py-2">
                 <span className="absolute inset-y-5 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
