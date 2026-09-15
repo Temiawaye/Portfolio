@@ -96,6 +96,7 @@ export function Work() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/10" />
+                <div className="pointer-events-none absolute inset-0 bg-black/40 transition-opacity duration-500 ease-out group-hover:opacity-0 group-focus-within:opacity-0" />
                 <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-medium tracking-wider text-white backdrop-blur-md">
                   {String(index + 1).padStart(2, '0')}
                 </div>
