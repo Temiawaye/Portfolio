@@ -12,7 +12,6 @@ const sections = [
 
 export default function SectionProgress() {
     const [activeIndex, setActiveIndex] = useState(0)
-    const [isVisible, setIsVisible] = useState(false)
     const [pageProgress, setPageProgress] = useState(0)
 
     useEffect(() => {
@@ -28,7 +27,6 @@ export default function SectionProgress() {
             }, 0)
 
             setActiveIndex(nextActiveIndex)
-            setIsVisible(window.scrollY >= window.innerHeight * 0.6)
             setPageProgress(scrollableDistance > 0 ? Math.max(0, Math.min(window.scrollY / scrollableDistance, 1)) : 0)
         }
 
@@ -65,22 +63,18 @@ export default function SectionProgress() {
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={pageProgressPercent}
-                className="fixed inset-x-0 top-0 z-[60] h-0.5 bg-border-default sm:hidden"
+                className="fixed inset-x-0 top-0 z-[100] h-[3px] bg-border-control sm:hidden"
             >
                 <span
-                    className="block h-full origin-left bg-accent transition-transform duration-100 ease-linear motion-reduce:transition-none"
-                    style={{ transform: `scaleX(${pageProgress})` }}
+                    className="block h-full bg-accent shadow-[0_0_8px_var(--accent)] transition-[width] duration-100 ease-linear motion-reduce:transition-none motion-reduce:shadow-none"
+                    style={{ width: `${pageProgress * 100}%` }}
                     aria-hidden="true"
                 />
             </div>
 
             <div
                 style={{ left: "clamp(6rem, 8vw, 8rem)" }}
-                className={`fixed top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-300 sm:block ${
-                    isVisible
-                        ? "pointer-events-auto opacity-100"
-                        : "pointer-events-none opacity-0"
-                }`}
+                className="fixed top-1/2 z-[70] hidden -translate-y-1/2 sm:block"
             >
                 <div className="relative flex h-[min(72vh,42rem)] min-h-80 w-8 shrink-0 flex-col items-center justify-between py-2">
                     <span className="absolute inset-y-5 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
