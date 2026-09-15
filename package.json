@@ -9,8 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@iconify-react/at-icons": "^1.0.3",
     "@iconify-react/bi": "^1.0.2",
+    "@iconify-react/boxicons": "^1.0.2",
+    "@iconify-react/bxl": "^1.0.2",
+    "@iconify-react/codicon": "^1.0.27",
     "@iconify-react/devicon": "^1.0.6",
+    "@iconify-react/heroicons": "^1.0.2",
     "@iconify-react/logos": "^1.0.6",
     "lucide-react": "^0.562.0",
     "motion": "^12.23.26",

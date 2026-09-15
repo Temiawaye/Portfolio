@@ -1,8 +1,12 @@
 "use client"
-import FramerIcon from "@iconify-react/logos/framer"
-import NextjsIcon from "@iconify-react/devicon/nextjs"
-import ReactIcon from "@iconify-react/devicon/react"
-import TypescriptIcon from "@iconify-react/devicon/typescript"
+import GitForkIcon from "@iconify-react/at-icons/git-fork"
+import GitMergeIcon from "@iconify-react/at-icons/git-merge"
+import GitPullRequestIcon from "@iconify-react/at-icons/git-pull-request"
+import TerminalIcon from "@iconify-react/bi/terminal"
+import BracketCurlyIcon from "@iconify-react/boxicons/bracket-curly"
+import GithubCopilotIcon from "@iconify-react/bxl/github-copilot"
+import TerminalLinuxIcon from "@iconify-react/codicon/terminal-linux"
+import CodeBracketIcon from "@iconify-react/heroicons/code-bracket"
 import { useRef } from "react"
 import { easeOut, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 
@@ -33,10 +37,14 @@ const itemb = {
 }
 
 const developerIcons = [
-    { icon: ReactIcon, label: "React", position: "-left-7 top-4 sm:-left-12" },
-    { icon: NextjsIcon, label: "Next.js", position: "-right-7 top-7 sm:-right-12" },
-    { icon: TypescriptIcon, label: "TypeScript", position: "-left-6 bottom-7 sm:-left-11" },
-    { icon: FramerIcon, label: "Motion", position: "-right-6 bottom-5 sm:-right-11" },
+    { icon: CodeBracketIcon, label: "Code", position: "-left-7 top-4 sm:-left-12", visibility: "flex" },
+    { icon: BracketCurlyIcon, label: "Curly brackets", position: "-right-7 top-7 sm:-right-12", visibility: "flex" },
+    { icon: GitForkIcon, label: "Git fork", position: "-left-6 bottom-7 sm:-left-11", visibility: "flex" },
+    { icon: TerminalIcon, label: "Terminal", position: "-right-6 bottom-5 sm:-right-11", visibility: "flex" },
+    { icon: GitPullRequestIcon, label: "Git pull request", position: "-left-16 top-1/2 -translate-y-1/2", visibility: "hidden sm:flex" },
+    { icon: GitMergeIcon, label: "Git merge", position: "-right-16 top-1/2 -translate-y-1/2", visibility: "hidden sm:flex" },
+    { icon: GithubCopilotIcon, label: "GitHub Copilot", position: "-top-12 left-4", visibility: "hidden md:flex" },
+    { icon: TerminalLinuxIcon, label: "Linux terminal", position: "-top-12 right-4", visibility: "hidden md:flex" },
 ]
 
 export default function HeroSection() {
@@ -85,7 +93,7 @@ export default function HeroSection() {
                     />
                 </div>
 
-                {developerIcons.map(({ icon: Icon, label, position }, index) => (
+                {developerIcons.map(({ icon: Icon, label, position, visibility }, index) => (
                     <motion.div
                         key={label}
                         title={label}
@@ -100,7 +108,7 @@ export default function HeroSection() {
                             ease: "easeInOut",
                             repeat: Infinity,
                         }}
-                        className={`absolute ${position} flex size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm`}
+                        className={`absolute ${position} ${visibility} size-11 items-center justify-center rounded-xl border border-electric-lavender/25 bg-midnight-purple/85 text-electric-lavender shadow-[0_0_18px_rgba(179,136,255,0.18)] backdrop-blur-sm`}
                     >
                         <Icon width="24" height="24" aria-hidden="true" />
                     </motion.div>
@@ -184,4 +192,3 @@ export default function HeroSection() {
         </motion.section>
     );
 }
-
