@@ -70,9 +70,9 @@ export default function HeroSection() {
             className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-bg-primary px-5 py-28 text-center text-text-primary"
         >
             <div
-                className="pointer-events-none absolute inset-0 opacity-50"
+                className="pointer-events-none absolute inset-0"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.42) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.42) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.36) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.36) 1px, transparent 1px)",
                     backgroundSize: "42px 42px",
                     maskImage: "radial-gradient(circle at center, black 12%, transparent 72%)",
                 }}
