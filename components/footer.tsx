@@ -73,7 +73,7 @@ export default function Footer() {
                         <button
                             type="button"
                             onClick={scrollToTop}
-                            className="ml-1 inline-flex min-h-10 items-center gap-2 rounded-xl border border-border-control px-3 text-xs font-medium text-text-primary transition-[color,border-color,transform] hover:border-accent-hover hover:text-link-hover active:border-accent-active active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
+                            className="ml-1 inline-flex min-h-10 items-center gap-2 rounded-xl border border-border-control px-3 text-xs text-text-muted transition-[color,border-color,transform] hover:border-accent-hover hover:text-link-hover active:border-accent-active active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
                         >
                             <span aria-hidden="true">↑</span>
                             back to top
