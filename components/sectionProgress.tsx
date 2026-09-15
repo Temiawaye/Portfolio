@@ -6,7 +6,7 @@ const sections = [
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
+    { id: "skills", label: "Development tools" },
     { id: "contact", label: "Contact" },
 ]
 
@@ -18,10 +18,11 @@ export default function SectionProgress() {
         let animationFrame = 0
 
         const updateProgress = () => {
-            const viewportMarker = window.scrollY + window.innerHeight * 0.4
-            const nextActiveIndex = sections.reduce((currentIndex, section, index) => {
+            const activationLine = Math.min(window.innerHeight * 0.2, 160)
+            const isAtPageEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+            const nextActiveIndex = isAtPageEnd ? sections.length - 1 : sections.reduce((currentIndex, section, index) => {
                 const element = document.getElementById(section.id)
-                return element && element.offsetTop <= viewportMarker ? index : currentIndex
+                return element && element.getBoundingClientRect().top <= activationLine ? index : currentIndex
             }, 0)
 
             setActiveIndex(nextActiveIndex)
@@ -45,6 +46,8 @@ export default function SectionProgress() {
     }, [])
 
     const goToSection = (id: string) => {
+        const nextIndex = sections.findIndex((section) => section.id === id)
+        if (nextIndex >= 0) setActiveIndex(nextIndex)
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
     }
 
