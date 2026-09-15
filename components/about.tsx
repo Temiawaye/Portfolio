@@ -33,10 +33,14 @@ export default function About() {
             >
                 {/* Header */}
                 <motion.div variants={item} className="mb-16">
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.05] max-w-2xl">
+                    <h2 className="mb-5 flex flex-wrap text-base font-semibold tracking-tight" aria-label="About me">
+                        <span className="text-electric-lavender" aria-hidden="true">~/</span>
+                        <span className="text-text-primary">about me</span>
+                    </h2>
+                    <h3 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.15] max-w-3xl">
                         Code with intention.{" "}
                         <span className="text-text-secondary">Scale with precision.</span>
-                    </h2>
+                    </h3>
                 </motion.div>
 
                 {/* Content grid */}
@@ -61,7 +65,7 @@ export default function About() {
                                 key={i}
                                 className="bg-code-bg rounded-2xl p-6 hover:border-accent transition-colors shadow-xl shadow-accent/3.5"
                             >
-                                <p className="font-black text-xl mb-1">{spec.label}</p>
+                                <h4 className="font-semibold text-xl mb-1">{spec.label}</h4>
                                 <p className="text-text-muted text-sm leading-relaxed">{spec.desc}</p>
                             </div>
                         ))}

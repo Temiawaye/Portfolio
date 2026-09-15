@@ -224,7 +224,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                     aria-hidden="true"
                 />
             </motion.span>
-            <span className="relative z-10 font-semibold text-text-secondary">{tool.name}</span>
+            <span className="relative z-10 font-medium text-text-secondary">{tool.name}</span>
         </motion.div>
     )
 }
@@ -256,7 +256,7 @@ function AnimatedStatValue({ value, index }: { value: string; index: number }) {
     }, [count, index, isInView, prefersReducedMotion, target])
 
     return (
-        <p ref={valueRef} className="text-3xl md:text-5xl font-black text-text-primary tracking-tight">
+        <p ref={valueRef} className="text-3xl md:text-5xl font-semibold text-text-primary tracking-tight">
             <motion.span>{roundedCount}</motion.span>{suffix}
         </p>
     )
@@ -359,17 +359,24 @@ export default function Experience() {
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <motion.div variants={item} className=" mb-5">
-                    <p className="text-xs font-semibold tracking-[0.3em] uppercase text-accent mb-4">Experience</p>
+                    <h2 className="mb-4 flex flex-wrap text-base font-semibold tracking-tight" aria-label="Experience">
+                        <span className="text-electric-lavender" aria-hidden="true">~/</span>
+                        <span className="text-text-primary">experience</span>
+                    </h2>
                 </motion.div>
 
                 {/* Experience & Education */}
                 <motion.div variants={item} className="mb-20">
                     <div className="mb-5 flex items-end justify-between gap-3 md:mb-6 md:gap-4">
                         <div>
-                            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted">Journey</p>
+                            <h3 className="flex max-w-full flex-wrap text-sm font-semibold leading-relaxed" aria-label="Education and work experience">
+                                <span className="text-electric-lavender" aria-hidden="true">{"<"}</span>
+                                <span className="text-text-primary">education and work experience</span>
+                                <span className="ml-1 text-electric-lavender" aria-hidden="true">{"/>"}</span>
+                            </h3>
                             <p className="mt-2 text-sm text-text-secondary">Scroll vertically to explore each milestone.</p>
                         </div>
-                        <p className="shrink-0 rounded-full border border-border-default bg-bg-secondary px-3 py-1 text-xs font-semibold tabular-nums text-text-muted md:text-sm" aria-hidden="true">
+                        <p className="shrink-0 rounded-full border border-border-default bg-bg-secondary px-3 py-1 text-xs font-medium tabular-nums text-text-muted md:text-sm" aria-hidden="true">
                             {String(activeJourneyIndex + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")}
                         </p>
                     </div>
@@ -388,10 +395,10 @@ export default function Experience() {
                                     className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl bg-bg-secondary p-5 transition-colors hover:border-accent sm:p-7 md:p-10"
                                 >
                                     <div>
-                                        <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-accent sm:text-xs md:mb-5 md:tracking-[0.3em]">{entry.category}</p>
-                                        <h3 className="max-w-2xl text-xl font-bold leading-tight text-text-primary sm:text-2xl md:text-4xl">{entry.title}</h3>
+                                        <p className="mb-4 text-[0.65rem] font-medium uppercase tracking-[0.25em] text-accent sm:text-xs md:mb-5 md:tracking-[0.3em]">{entry.category}</p>
+                                        <h4 className="max-w-2xl text-xl font-semibold leading-tight text-text-primary sm:text-2xl md:text-4xl">{entry.title}</h4>
                                         <div className="mt-3 flex flex-col items-start gap-1 text-xs text-text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 sm:text-sm">
-                                            <span className="font-semibold text-text-secondary">{entry.organization}</span>
+                                            <span className="font-medium text-text-secondary">{entry.organization}</span>
                                             <span className="hidden sm:inline" aria-hidden="true">•</span>
                                             <span>{entry.date}</span>
                                         </div>
@@ -455,7 +462,11 @@ export default function Experience() {
                 {/* Development tools grid */}
                 <div>
                     <motion.div variants={item}>
-                        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-6">Development Tools</p>
+                        <h3 className="mb-6 flex flex-wrap text-sm font-semibold leading-relaxed" aria-label="Development tools">
+                            <span className="text-electric-lavender" aria-hidden="true">{"<"}</span>
+                            <span className="text-text-primary">development tools</span>
+                            <span className="ml-1 text-electric-lavender" aria-hidden="true">{"/>"}</span>
+                        </h3>
                         <div ref={toolGridRef} className="relative grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                             {!prefersReducedMotion && (
                                 <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible" aria-hidden="true">

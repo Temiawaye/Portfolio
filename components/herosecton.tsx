@@ -59,12 +59,12 @@ export default function HeroSection() {
                 </div>
             </motion.div>
 
-            <motion.p 
+            <motion.h1
                 variants={itema} 
-                className="text-5xl md:text-7xl lg:text-8xl font-black mb-5 leading-[0.9]"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold mb-5 leading-[0.95]"
             >
                 AWAYE <br className="md:hidden" /> TEMILOLUWA
-            </motion.p>
+            </motion.h1>
             <motion.p 
                 variants={item} 
                 className="text-center text-lg md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-6 md:mb-7"
@@ -84,15 +84,15 @@ export default function HeroSection() {
             >
                 <button
                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-button text-button-text px-8 py-3 rounded-2xl font-semibold hover:bg-button-hover active:bg-button-active transition-colors cursor-pointer"
+                    className="bg-button text-button-text px-8 py-3 rounded-2xl font-medium hover:bg-button-hover active:bg-button-active transition-colors cursor-pointer"
                 >
-                    View My Work
+                    View projects
                 </button>
                 <button
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                     className="border-2 border-border-control bg-transparent text-text-primary px-8 py-3 rounded-2xl hover:bg-bg-secondary hover:border-accent-hover active:border-accent-active transition-colors cursor-pointer"
                 >
-                    Get In Touch
+                    Contact me
                 </button>
             </motion.div>
 

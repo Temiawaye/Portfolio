@@ -13,6 +13,8 @@
   --accent: #bf5fff;
   --accent-hover: #d49aff;
   --accent-active: #af55ff;
+  --midnight-purple: #1a1033;
+  --electric-lavender: #b388ff;
   --text-on-accent: #000000;
 
   --link-default: var(--accent);
@@ -62,17 +64,41 @@
   --color-code-bg: var(--code-bg);
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-midnight-purple: var(--midnight-purple);
+  --color-electric-lavender: var(--electric-lavender);
+  --font-sans: var(--font-jetbrains-mono);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  font-weight: 500;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 400;
 }
 
 /* ::selection {

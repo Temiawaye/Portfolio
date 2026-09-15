@@ -20,7 +20,7 @@ export function ProjectCard({ title, description, image, tags, link }: ProjectCa
       </div>
       <div className="p-6">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-2xl font-bold text-text-primary">{title}</h3>
+          <h3 className="text-2xl font-semibold text-text-primary">{title}</h3>
           {link && (
             <a 
               href={link} 
@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, image, tags, link }: ProjectCa
           {tags.map((tag, index) => (
             <span 
               key={index}
-              className="px-3 py-1 bg-code-bg text-text-secondary rounded-full text-sm"
+              className="px-3 py-1 bg-code-bg text-text-secondary rounded-full text-sm font-medium"
             >
               {tag}
             </span>

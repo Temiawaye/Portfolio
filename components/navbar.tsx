@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from "motion/react";
 
+const navigationItems = [
+  { label: "About", id: "about" },
+  { label: "Projects", id: "projects" },
+  { label: "Skills", id: "experience" },
+  { label: "Contact", id: "contact" },
+]
+
 export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +52,8 @@ export default function Navbar() {
   };
 
   return (
-    <><motion.div
+    <><motion.nav
+      aria-label="Primary navigation"
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -56,35 +64,29 @@ export default function Navbar() {
       {/* Logo */}
       <button
         onClick={() => scrollToSection('home')}
-        className="font-black text-lg tracking-tighter text-text-primary hover:text-link-hover active:text-link-active transition-colors cursor-pointer"
+        className="font-bold text-lg tracking-tighter text-text-primary hover:text-link-hover active:text-link-active transition-colors cursor-pointer"
       >
         TEMI<span className="text-accent">.</span>
       </button>
 
       <div className="hidden lg:flex gap-8 items-center font-medium text-md tracking-wide">
-        {['Home', 'About', 'Projects'].map((item) => (
+        {navigationItems.map((item) => (
           <button
-            key={item}
-            onClick={() => scrollToSection(item.toLowerCase())}
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
             className="text-text-secondary hover:text-text-primary active:text-accent transition-colors relative group"
           >
-            {item}
+            {item.label}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
           </button>
         ))}
-        <button
-          onClick={() => scrollToSection('contact')}
-          className="bg-button text-button-text px-5 py-2 rounded-full text-sm font-semibold hover:bg-button-hover active:bg-button-active transition-all hover:scale-105"
-        >
-          Get in touch
-        </button>
       </div>
 
       <button aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} className="lg:hidden z-50 text-text-primary" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
-    </motion.div>
+    </motion.nav>
 
       <AnimatePresence>
         {menuOpen && (
@@ -95,13 +97,13 @@ export default function Navbar() {
             transition={{ type: "tween", duration: 0.4 }}
             className="fixed inset-0 bg-bg-primary/70 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8"
           >
-            {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+            {navigationItems.map((item) => (
               <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-3xl font-bold text-text-primary hover:text-link-hover active:text-link-active transition-colors"
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-3xl font-medium text-text-primary hover:text-link-hover active:text-link-active transition-colors"
               >
-                {item}
+                {item.label}
               </button>
             ))}
           </motion.div>

@@ -66,11 +66,14 @@ export function Work() {
       <div className=" max-w-6xl mx-auto">
         {/* Header */}
         <motion.div variants={item} className="mb-15 flex flex-col items-center justify-center gap-2 text-center items-center">
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-accent mb-4">Projects</p>
+          <h2 className="mb-4 flex flex-wrap justify-center text-base font-semibold tracking-tight" aria-label="Projects">
+            <span className="text-electric-lavender" aria-hidden="true">~/</span>
+            <span className="text-text-primary">projects</span>
+          </h2>
           <div className=" flex flex-col items-center justify-center">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-text-primary leading-tight mb-3">
+            <h3 className="text-4xl md:text-6xl font-semibold tracking-tight text-text-primary leading-tight mb-3">
               SHIPPED PROJECTS.
-            </h2>
+            </h3>
             <p className="text-text-secondary max-w-sm text-base leading-relaxed">
               A showcase of my recent projects, highlighting modern architecture and interactive UI/UX.
             </p>
@@ -93,7 +96,7 @@ export function Work() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/10" />
-                <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-semibold tracking-wider text-white backdrop-blur-md">
+                <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-medium tracking-wider text-white backdrop-blur-md">
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 <div className="absolute right-5 top-5 flex flex-wrap justify-end gap-2 transition-all duration-300 sm:pointer-events-none sm:translate-y-1 sm:opacity-0 sm:group-hover:pointer-events-auto sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:pointer-events-auto sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
@@ -102,7 +105,7 @@ export function Work() {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="no-underline inline-flex rounded-full bg-button px-4 py-2 text-xs font-bold text-button-text shadow-lg shadow-black/20 transition-colors hover:bg-button-hover active:bg-button-active"
+                      className="no-underline inline-flex rounded-full bg-button px-4 py-2 text-xs font-medium text-button-text shadow-lg shadow-black/20 transition-colors hover:bg-button-hover active:bg-button-active"
                     >
                       Live
                     </a>
@@ -112,9 +115,9 @@ export function Work() {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="no-underline inline-flex rounded-full border border-border-control bg-bg-secondary/90 px-4 py-2 text-xs font-bold text-text-primary shadow-lg shadow-black/20 backdrop-blur-md transition-colors hover:border-accent-hover hover:bg-code-bg active:border-accent-active"
+                      className="no-underline inline-flex rounded-full border border-border-control bg-bg-secondary/90 px-4 py-2 text-xs font-medium text-text-primary shadow-lg shadow-black/20 backdrop-blur-md transition-colors hover:border-accent-hover hover:bg-code-bg active:border-accent-active"
                     >
-                      Code
+                      View source
                     </a>
                   )}
                 </div>
@@ -122,9 +125,9 @@ export function Work() {
 
               <div className="relative flex flex-col justify-between p-7 sm:p-9 lg:p-12">
                 <div>
-                  <h3 className="mb-4 text-3xl font-black tracking-tight text-text-primary transition-colors group-hover:text-accent-hover md:text-4xl">
+                  <h4 className="mb-4 text-3xl font-semibold tracking-tight text-text-primary transition-colors group-hover:text-accent-hover md:text-4xl">
                     {project.title}
-                  </h3>
+                  </h4>
                   {project.description && (
                     <p className="max-w-md text-sm leading-relaxed text-text-secondary md:text-base">
                       {project.description}
