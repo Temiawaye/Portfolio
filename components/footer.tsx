@@ -31,7 +31,7 @@ export default function Footer() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             className="relative w-full border-t border-border-default bg-bg-primary px-5 py-8 text-text-secondary lg:px-20"
         >
             <span className="absolute left-0 top-0 h-px w-24 bg-accent" aria-hidden="true" />

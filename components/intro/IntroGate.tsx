@@ -9,9 +9,8 @@ const IntroLogoCanvas = dynamic(() => import("./IntroLogoCanvas"), {
     loading: () => null,
 })
 
-const EXIT_DURATION_MS = 500
-const MIN_INTRO_DURATION_MS = 4_500
-const MAX_INTRO_DURATION_MS = 4_500
+const EXIT_DURATION_MS = 350
+const MAX_INTRO_DURATION_MS = 8_000
 
 type IntroPhase = "visible" | "leaving" | "hidden"
 
@@ -82,7 +81,6 @@ export default function IntroGate({ children }: { children: ReactNode }) {
     const [webglAvailable, setWebglAvailable] = useState(false)
     const homepageReadyRef = useRef(false)
     const modelReadyRef = useRef(false)
-    const minimumDurationElapsedRef = useRef(false)
     const introActive = phase !== "hidden"
 
     const dismiss = useCallback(() => {
@@ -91,21 +89,12 @@ export default function IntroGate({ children }: { children: ReactNode }) {
 
     const markHomepageReady = useCallback(() => {
         homepageReadyRef.current = true
-        if (modelReadyRef.current && minimumDurationElapsedRef.current) dismiss()
+        if (modelReadyRef.current) dismiss()
     }, [dismiss])
 
     const markModelReady = useCallback(() => {
         modelReadyRef.current = true
-        if (homepageReadyRef.current && minimumDurationElapsedRef.current) dismiss()
-    }, [dismiss])
-
-    useEffect(() => {
-        const timeout = window.setTimeout(() => {
-            minimumDurationElapsedRef.current = true
-            if (homepageReadyRef.current && modelReadyRef.current) dismiss()
-        }, MIN_INTRO_DURATION_MS)
-
-        return () => window.clearTimeout(timeout)
+        if (homepageReadyRef.current) dismiss()
     }, [dismiss])
 
     useEffect(() => {
@@ -165,7 +154,7 @@ export default function IntroGate({ children }: { children: ReactNode }) {
                 inert={introActive ? true : undefined}
                 aria-hidden={introActive ? true : undefined}
                 style={{ visibility: phase === "visible" ? "hidden" : "visible" }}
-                className={`transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                className={`transition-opacity duration-[350ms] ease-out motion-reduce:transition-none ${
                     phase === "visible" ? "opacity-0" : "opacity-100"
                 }`}
             >
@@ -177,15 +166,15 @@ export default function IntroGate({ children }: { children: ReactNode }) {
                     role="status"
                     aria-live="polite"
                     aria-label="Loading portfolio"
-                    className={`fixed inset-0 z-[1000] touch-none overflow-hidden bg-bg-primary transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                    className={`fixed inset-0 z-[1000] touch-none overflow-hidden bg-bg-primary transition-opacity duration-[350ms] ease-out motion-reduce:transition-none ${
                         phase === "leaving" ? "opacity-0" : "opacity-100"
                     }`}
                 >
                     <span className="sr-only">Loading portfolio</span>
                     {webglAvailable && (
                         <div
-                            className={`size-full transition-[transform,opacity] duration-500 ease-in motion-reduce:transition-none ${
-                                phase === "leaving" ? "scale-50 opacity-0" : "scale-100 opacity-100"
+                            className={`size-full transition-[transform,opacity] duration-[350ms] ease-in motion-reduce:transition-none ${
+                                phase === "leaving" ? "scale-75 opacity-0" : "scale-100 opacity-100"
                             }`}
                         >
                             <IntroErrorBoundary onError={dismiss}>

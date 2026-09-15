@@ -15,25 +15,25 @@ const container = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.,
-            delayChildren: 0.5,
+            staggerChildren: 0.08,
+            delayChildren: 0.05,
         }
     }
 }
 
 const item = {
-    hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: easeOut } }
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: easeOut } }
 }
 
 const itema = {
-    hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } }
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOut } }
 }
 
 const itemb = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOut } }
 }
 
 const developerIcons = [
@@ -61,9 +61,9 @@ export default function HeroSection() {
             ref={heroRef}
             id="home"
             variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            initial={prefersReducedMotion ? false : "hidden"}
+            whileInView={prefersReducedMotion ? undefined : "visible"}
+            viewport={{ once: true, amount: 0.1 }}
             // initial={{opacity: 0, y: 40 }} 
             // animate={{opacity: 1, y: 0 }} 
             // transition={{duration: 1, ease: "easeOut"}}
@@ -106,7 +106,7 @@ export default function HeroSection() {
                 className="relative z-10 mb-7 md:mb-9"
             >
                 <div
-                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-border-default cursor-pointer overflow-hidden hover:scale-120 transition-all duration-300 ease-in-out shadow-xl shadow-accent/11"
+                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-border-default cursor-pointer overflow-hidden shadow-xl shadow-accent/11 transition-transform duration-200 ease-out motion-safe:hover:scale-[1.04]"
                 >
                     <img
                         src="/profile.png"

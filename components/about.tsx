@@ -1,15 +1,15 @@
 "use client"
 
-import { easeOut, motion } from "motion/react"
+import { easeOut, motion, useReducedMotion } from "motion/react"
 
 const container = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 }
 
 const item = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: easeOut } }
 }
 
 const specializations = [
@@ -19,6 +19,8 @@ const specializations = [
 ]
 
 export default function About() {
+    const prefersReducedMotion = useReducedMotion()
+
     return (
         <section
             id="about"
@@ -26,9 +28,9 @@ export default function About() {
         >
             <motion.div
                 variants={container}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                initial={prefersReducedMotion ? false : "hidden"}
+                whileInView={prefersReducedMotion ? undefined : "visible"}
+                viewport={{ once: true, amount: 0.2 }}
                 className="max-w-6xl mx-auto"
             >
                 {/* Header */}

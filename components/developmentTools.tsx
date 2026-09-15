@@ -23,12 +23,12 @@ import PostgresqlIcon from "@iconify-react/logos/postgresql"
 
 const container = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
 }
 
 const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: easeOut } },
 }
 
 const devTools = [
@@ -114,12 +114,12 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
             whileInView={prefersReducedMotion ? undefined : {
                 opacity: 1,
                 y: 0,
-                transition: { type: "spring", stiffness: 210, damping: 19, delay: (index % 8) * 0.055 },
+                transition: { duration: 0.36, ease: easeOut, delay: (index % 4) * 0.04 },
             }}
             viewport={{ once: true, amount: 0.35 }}
             whileHover={prefersReducedMotion ? undefined : {
-                y: -6,
-                transition: { type: "spring", stiffness: 260, damping: 18 },
+                y: -4,
+                transition: { type: "spring", stiffness: 360, damping: 28 },
             }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             onPointerMove={followPointer}
@@ -133,7 +133,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
         >
             <motion.span
                 animate={{ opacity: isHovered || isAutoActive ? 1 : 0 }}
-                transition={{ duration: isHovered ? 0.2 : 0.8, ease: "easeInOut" }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
                 className="pointer-events-none absolute inset-0 rounded-[inherit] border border-accent"
                 aria-hidden="true"
             />
@@ -147,7 +147,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                                 ? [0, 0.65, 0.22]
                                 : 0,
                 }}
-                transition={{ duration: isHovered ? 0.25 : 3.2, ease: "easeOut" }}
+                transition={{ duration: isHovered ? 0.18 : 0.65, ease: "easeOut" }}
                 className="pointer-events-none absolute inset-0"
                 style={{ background: "radial-gradient(140px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(191, 95, 255, 0.16), transparent 70%)" }}
                 aria-hidden="true"
@@ -164,7 +164,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                 }
                 transition={isHovered
                     ? { type: "spring", stiffness: 300, damping: 18 }
-                    : { duration: 2.8, ease: "easeInOut" }
+                    : { duration: 0.7, ease: "easeOut" }
                 }
                 className="relative z-10 flex size-8 shrink-0 items-center justify-center"
             >
@@ -246,9 +246,9 @@ export default function DevelopmentTools() {
         <motion.section
             id="skills"
             variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            initial={prefersReducedMotion ? false : "hidden"}
+            whileInView={prefersReducedMotion ? undefined : "visible"}
+            viewport={{ once: true, amount: 0.1 }}
             className="bg-bg-primary px-5 py-15 text-text-primary md:px-10 lg:px-20"
         >
             <motion.div variants={item} className="mx-auto max-w-6xl">

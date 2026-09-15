@@ -1,16 +1,16 @@
 "use client"
 
-import { useRef, useState } from 'react';
-import { easeOut, motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { easeOut, motion, useReducedMotion } from 'motion/react';
 
 const container = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 }
 
 const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: easeOut } }
 }
 
 const experiences = [
@@ -54,38 +54,48 @@ const journey = [
 ]
 
 export default function Experience() {
+    const prefersReducedMotion = useReducedMotion()
     const journeyRailRef = useRef<HTMLDivElement>(null)
+    const journeyAnimationFrameRef = useRef(0)
     const [activeJourneyIndex, setActiveJourneyIndex] = useState(0)
 
     const updateJourneyProgress = () => {
-        const rail = journeyRailRef.current
-        if (!rail) return
+        cancelAnimationFrame(journeyAnimationFrameRef.current)
+        journeyAnimationFrameRef.current = requestAnimationFrame(() => {
+            const rail = journeyRailRef.current
+            if (!rail) return
 
-        const cards = Array.from(rail.children) as HTMLElement[]
-        const closestCardIndex = cards.reduce((closestIndex, card, index) => {
-            const currentDistance = Math.abs(card.offsetTop - rail.offsetTop - rail.scrollTop)
-            const closestDistance = Math.abs(cards[closestIndex].offsetTop - rail.offsetTop - rail.scrollTop)
-            return currentDistance < closestDistance ? index : closestIndex
-        }, 0)
+            const cards = Array.from(rail.children) as HTMLElement[]
+            const closestCardIndex = cards.reduce((closestIndex, card, index) => {
+                const currentDistance = Math.abs(card.offsetTop - rail.offsetTop - rail.scrollTop)
+                const closestDistance = Math.abs(cards[closestIndex].offsetTop - rail.offsetTop - rail.scrollTop)
+                return currentDistance < closestDistance ? index : closestIndex
+            }, 0)
 
-        setActiveJourneyIndex(closestCardIndex)
+            setActiveJourneyIndex(closestCardIndex)
+        })
     }
+
+    useEffect(() => () => cancelAnimationFrame(journeyAnimationFrameRef.current), [])
 
     const scrollToJourneyCard = (index: number) => {
         const rail = journeyRailRef.current
         const card = rail?.children[index] as HTMLElement | undefined
         if (!rail || !card) return
 
-        rail.scrollTo({ top: card.offsetTop - rail.offsetTop, behavior: "smooth" })
+        rail.scrollTo({
+            top: card.offsetTop - rail.offsetTop,
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+        })
     }
 
     return (
         <motion.section
             id="experience"
             variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            initial={prefersReducedMotion ? false : "hidden"}
+            whileInView={prefersReducedMotion ? undefined : "visible"}
+            viewport={{ once: true, amount: 0.1 }}
             className="py-15 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
         >
             <div className="max-w-6xl mx-auto">
@@ -151,7 +161,7 @@ export default function Experience() {
                             />
                             <span className="absolute inset-y-5 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
                             <span
-                                className="absolute left-1/2 top-5 w-px -translate-x-1/2 bg-accent transition-[height] duration-300"
+                                className="absolute left-1/2 top-5 w-px -translate-x-1/2 bg-accent transition-[height] duration-250 ease-out"
                                 style={{ height: `calc((100% - 2.5rem) * ${activeJourneyIndex / Math.max(journey.length - 1, 1)})` }}
                                 aria-hidden="true"
                             />
@@ -165,7 +175,7 @@ export default function Experience() {
                                     className="group relative z-10 flex h-10 w-7 items-center justify-center rounded-full md:w-8"
                                 >
                                     <span
-                                        className={`block h-3 w-3 rounded-full border transition-all ${
+                                        className={`block h-3 w-3 rounded-full border transition-[transform,border-color,background-color] duration-150 ease-out ${
                                             activeJourneyIndex === index
                                                 ? "scale-125 border-accent bg-accent"
                                                 : "border-border-control bg-bg-primary group-hover:border-accent-hover"

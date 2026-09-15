@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const navigationItems = [
   { label: "About", text: "about", prefix: "~/", id: "about" },
@@ -25,12 +25,13 @@ function NavigationLabel({ item }: { item: (typeof navigationItems)[number] }) {
 
 export default function Navbar() {
 
+  const prefersReducedMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -56,7 +57,7 @@ export default function Navbar() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: prefersReducedMotion ? "auto" : "smooth"
       });
 
       setMenuOpen(false);
@@ -66,10 +67,10 @@ export default function Navbar() {
   return (
     <><motion.nav
       aria-label="Primary navigation"
-      initial={{ opacity: 0, y: -100 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`flex max-w-6xl mx-auto rounded-full mt-3 justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 transition-colors duration-300
+      transition={{ duration: prefersReducedMotion ? 0 : 0.32, ease: "easeOut" }}
+      className={`flex max-w-6xl mx-auto rounded-full mt-3 justify-between items-center lg:px-20 lg:py-5 p-5 fixed top-0 left-0 right-0 z-50 transition-colors duration-200
           ${scrolled ? "bg-bg-secondary/90 backdrop-blur-md py-2" : "bg-bg-primary/60 backdrop-blur-sm  py-6"} `
       }
     >
@@ -100,12 +101,12 @@ export default function Navbar() {
             className="relative text-text-primary transition-colors group hover:text-link-hover active:text-link-active"
           >
             <NavigationLabel item={item} />
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"></span>
           </button>
         ))}
       </div>
 
-      <button aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} className="lg:hidden z-50 text-text-primary" onClick={() => setMenuOpen(!menuOpen)}>
+      <button aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} className="z-50 text-text-primary transition-[color,transform] duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender lg:hidden" onClick={() => setMenuOpen((isOpen) => !isOpen)}>
         {menuOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
@@ -114,10 +115,10 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
+            initial={prefersReducedMotion ? false : { opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "tween", duration: 0.4 }}
+            transition={{ type: "tween", duration: prefersReducedMotion ? 0 : 0.24, ease: "easeOut" }}
             className="fixed inset-0 bg-bg-primary/70 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8"
           >
             {navigationItems.map((item) => (

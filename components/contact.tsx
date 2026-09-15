@@ -5,26 +5,28 @@ import GithubIcon from "@iconify-react/bi/github"
 import LinkedinIcon from "@iconify-react/bi/linkedin"
 import TwitterXIcon from "@iconify-react/bi/twitter-x"
 import WhatsappIcon from "@iconify-react/bi/whatsapp"
-import { easeOut, motion } from "motion/react";
+import { easeOut, motion, useReducedMotion } from "motion/react";
 
 const container = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 }
 
 const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, easeOut } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: easeOut } }
 }
 
 export default function Contact() {
+    const prefersReducedMotion = useReducedMotion()
+
     return (
         <motion.section
             id="contact"
             variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
+            initial={prefersReducedMotion ? false : "hidden"}
+            whileInView={prefersReducedMotion ? undefined : "visible"}
+            viewport={{ once: true, amount: 0.2 }}
             className="py-15 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
         >
             <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
