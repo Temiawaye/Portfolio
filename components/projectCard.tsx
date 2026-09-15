@@ -10,7 +10,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, image, tags, link }: ProjectCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-bg-secondary border border-border-default card-lift">
+    <div className="group relative overflow-hidden rounded-xl bg-bg-secondary card-lift">
       <div className="aspect-video overflow-hidden">
         <img 
           src={image} 
@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, image, tags, link }: ProjectCa
           {tags.map((tag, index) => (
             <span 
               key={index}
-              className="px-3 py-1 bg-code-bg text-text-secondary border border-border-default rounded-full text-sm"
+              className="px-3 py-1 bg-code-bg text-text-secondary rounded-full text-sm"
             >
               {tag}
             </span>

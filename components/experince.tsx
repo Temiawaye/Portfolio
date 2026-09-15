@@ -1,25 +1,25 @@
 "use client"
 
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import { easeOut, motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react';
+import { animate, easeOut, motion, useInView, useMotionValue, useReducedMotion, useSpring, useTransform } from 'motion/react';
 import {
     SiReact,
     SiNextdotjs,
     SiTailwindcss,
     SiTypescript,
     SiSupabase,
-    SiFigma,
-    SiFirebase,
     SiJavascript,
-    SiGit,
-    SiGithub,
-    SiPostgresql,
     SiFramer,
     SiVercel,
-    SiNodedotjs,
     SiExpo,
-    SiHuggingface
 } from "react-icons/si";
+import NodejsIcon from '@iconify-react/devicon/nodejs';
+import PostgresqlIcon from '@iconify-react/logos/postgresql';
+import HuggingfaceIcon from '@iconify-react/devicon/huggingface';
+import FigmaIcon from '@iconify-react/devicon/figma';
+import GitIcon from '@iconify-react/devicon/git';
+import GithubIcon from "@iconify-react/bi/github"
+import FirebaseIcon from '@iconify-react/logos/firebase-icon';
 
 const container = {
     hidden: { opacity: 0 },
@@ -45,16 +45,16 @@ const devTools = [
     { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
     { icon: SiJavascript, color: "#FF9A00", name: "JavaScript" },
     { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind" },
-    { icon: SiNodedotjs, color: "#3ECF8E", name: "Node.js" },
-    { icon: SiPostgresql, color: "#3ECF8E", name: "PostgreSql" },
+    { icon: NodejsIcon, color: "#3ECF8E", name: "Node.js" },
+    { icon: PostgresqlIcon, color: "#3ECF8E", name: "PostgreSql" },
     { icon: SiSupabase, color: "#3ECF8E", name: "Supabase" },
-    { icon: SiFirebase, color: "#F24E1E", name: "Firebase" },
+    { icon: FirebaseIcon, color: "#F24E1E", name: "Firebase" },
     { icon: SiVercel, color: "", name: "Vercel" },
-    { icon: SiHuggingface, color: "#f8b859ff", name: "HuggingFace" },
-    { icon: SiFigma, color: "#F24E1E", name: "Figma" },
+    { icon: HuggingfaceIcon, color: "#f8b859ff", name: "HuggingFace" },
+    { icon: FigmaIcon, color: "#F24E1E", name: "Figma" },
     { icon: SiFramer, color: "", name: "Framer" },
-    { icon: SiGit, color: "#F24E1E", name: "Git" },
-    { icon: SiGithub, color: "", name: "Github" },
+    { icon: GitIcon, color: "#F24E1E", name: "Git" },
+    { icon: GithubIcon, color: "", name: "Github" },
 
 ]
 
@@ -177,7 +177,7 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
             }}
             onPointerLeave={resetCard}
             style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformPerspective: 800 }}
-            className="group relative z-10 flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl border border-border-default bg-bg-secondary p-5"
+            className="group relative z-10 flex min-w-0 cursor-default items-center gap-4 overflow-hidden rounded-2xl shadow-xl shadow-accent/8 bg-bg-secondary p-5"
         >
             <motion.span
                 animate={{ opacity: isHovered || isAutoActive ? 1 : 0 }}
@@ -214,12 +214,51 @@ function ToolCard({ tool, index, isAutoActive, onInteractionChange, cardRef }: {
                     ? { type: "spring", stiffness: 300, damping: 18 }
                     : { duration: 2.8, ease: "easeInOut" }
                 }
-                className="relative z-10 flex"
+                className="relative z-10 flex size-8 shrink-0 items-center justify-center"
             >
-                <tool.icon size={32} style={{ color: tool.color }} />
+                <tool.icon
+                    width="32"
+                    height="32"
+                    className="size-8"
+                    style={{ color: tool.color }}
+                    aria-hidden="true"
+                />
             </motion.span>
             <span className="relative z-10 font-semibold text-text-secondary">{tool.name}</span>
         </motion.div>
+    )
+}
+
+function AnimatedStatValue({ value, index }: { value: string; index: number }) {
+    const valueRef = useRef<HTMLParagraphElement>(null)
+    const isInView = useInView(valueRef, { once: true, amount: 0.8 })
+    const prefersReducedMotion = useReducedMotion()
+    const target = Number.parseInt(value, 10)
+    const suffix = value.replace(String(target), "")
+    const count = useMotionValue(prefersReducedMotion ? target : 0)
+    const roundedCount = useTransform(count, (latest) => Math.round(latest))
+
+    useEffect(() => {
+        if (!isInView) return
+
+        if (prefersReducedMotion) {
+            count.set(target)
+            return
+        }
+
+        const controls = animate(count, target, {
+            duration: 1.8,
+            delay: index * 0.15,
+            ease: easeOut,
+        })
+
+        return () => controls.stop()
+    }, [count, index, isInView, prefersReducedMotion, target])
+
+    return (
+        <p ref={valueRef} className="text-3xl md:text-5xl font-black text-text-primary tracking-tight">
+            <motion.span>{roundedCount}</motion.span>{suffix}
+        </p>
     )
 }
 
@@ -335,18 +374,18 @@ export default function Experience() {
                         </p>
                     </div>
 
-                    <div className="flex items-stretch gap-3 md:gap-8">
+                    <div className="flex items-stretch gap-3 md:gap-8 ">
                         <div
                             ref={journeyRailRef}
                             onScroll={updateJourneyProgress}
                             tabIndex={0}
                             aria-label="Education and work experience. Scroll vertically to view more."
-                            className="flex h-[22rem] min-w-0 flex-1 snap-y snap-mandatory flex-col gap-4 overflow-y-auto overscroll-y-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-80 md:gap-5"
+                            className="flex h-[22rem] min-w-0 flex-1 snap-y snap-mandatory flex-col gap-4 overflow-y-auto overscroll-y-contain rounded-2xl scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-80 md:gap-5 shadow-xl shadow-accent/10"
                         >
                             {journey.map((entry) => (
                                 <article
                                     key={`${entry.category}-${entry.title}`}
-                                    className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary p-5 transition-colors hover:border-accent sm:p-7 md:p-10"
+                                    className="flex min-h-full min-w-full snap-start snap-always flex-col justify-between rounded-2xl bg-bg-secondary p-5 transition-colors hover:border-accent sm:p-7 md:p-10"
                                 >
                                     <div>
                                         <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-accent sm:text-xs md:mb-5 md:tracking-[0.3em]">{entry.category}</p>
@@ -403,11 +442,11 @@ export default function Experience() {
                 {/* Stats row */}
                 <motion.div
                     variants={item}
-                    className="grid grid-cols-3 gap-px bg-border-default border border-border-default rounded-2xl overflow-hidden mb-20"
+                    className="grid grid-cols-3 gap-px bg-border-default shadow-xl shadow-accent/10 rounded-2xl overflow-hidden mb-20"
                 >
                     {stats.map((s, i) => (
                         <div key={i} className="bg-bg-secondary flex flex-col items-center justify-center py-10 px-6 text-center">
-                            <p className="text-3xl md:text-5xl font-black text-text-primary tracking-tight">{s.value}</p>
+                            <AnimatedStatValue value={s.value} index={i} />
                             <p className="text-xs md:text-sm text-text-muted mt-2 font-medium">{s.label}</p>
                         </div>
                     ))}

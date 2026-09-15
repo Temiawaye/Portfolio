@@ -75,15 +75,15 @@ body {
   scroll-behavior: smooth;
 }
 
-::selection {
+/* ::selection {
   background-color: var(--accent);
   color: var(--text-on-accent);
-}
+} */
 
-:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+/* :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
-}
+} */
 
 a:not([class*="no-underline"]) {
   text-decoration-color: currentColor;

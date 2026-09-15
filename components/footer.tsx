@@ -1,13 +1,15 @@
 "use client"
 
-import { Linkedin, Twitter, Instagram } from "lucide-react"
-import { FaWhatsapp } from "react-icons/fa"
+import GithubIcon from "@iconify-react/bi/github"
+import LinkedinIcon from "@iconify-react/bi/linkedin"
+import TwitterXIcon from '@iconify-react/bi/twitter-x';
+import WhatsappIcon from "@iconify-react/bi/whatsapp"
 
 const socials = [
-    { icon: Linkedin, href: "#" },
-    { icon: Twitter, href: "#" },
-    { icon: Instagram, href: "#" },
-    { icon: FaWhatsapp, href: "#" },
+    { icon: LinkedinIcon, href: "#" },
+    { icon: TwitterXIcon, href: "#" },
+    { icon: GithubIcon, href: "#" },
+    { icon: WhatsappIcon, href: "#" },
 ]
 
 export default function Footer() {
@@ -24,7 +26,7 @@ export default function Footer() {
                             aria-label={`Social link ${i + 1}`}
                             className="no-underline text-text-muted hover:text-link-hover active:text-link-active transition-colors"
                         >
-                            <Icon size={18} />
+                            <Icon width="18" height="18" aria-hidden="true" />
                         </a>
                     ))}
                 </div>

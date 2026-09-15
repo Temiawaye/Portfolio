@@ -59,7 +59,7 @@ export default function About() {
                         {specializations.map((spec, i) => (
                             <div
                                 key={i}
-                                className="border border-border-default bg-code-bg rounded-2xl p-6 hover:border-accent transition-colors"
+                                className="bg-code-bg rounded-2xl p-6 hover:border-accent transition-colors shadow-xl shadow-accent/3.5"
                             >
                                 <p className="font-black text-xl mb-1">{spec.label}</p>
                                 <p className="text-text-muted text-sm leading-relaxed">{spec.desc}</p>

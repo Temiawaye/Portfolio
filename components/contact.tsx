@@ -1,8 +1,11 @@
 "use client"
 
-import { Mail, Linkedin, Twitter, Instagram } from "lucide-react"
+import EnvelopeIcon from "@iconify-react/bi/envelope"
+import GithubIcon from "@iconify-react/bi/github"
+import LinkedinIcon from "@iconify-react/bi/linkedin"
+import TwitterXIcon from "@iconify-react/bi/twitter-x"
+import WhatsappIcon from "@iconify-react/bi/whatsapp"
 import { easeOut, motion } from "motion/react";
-import { FaWhatsappSquare } from "react-icons/fa";
 
 const container = {
     hidden: { opacity: 0 },
@@ -34,12 +37,12 @@ export default function Contact() {
 
                     <div className="space-y-4 pt-4">
                         <a href="mailto:awayetemiloluwa@gmail.com" className="flex items-center gap-4 text-xl font-medium text-link underline hover:text-link-hover active:text-link-active transition-colors">
-                            <Mail /> awayetemiloluwa@gmail.com
+                            <EnvelopeIcon width="24" height="24" aria-hidden="true" /> awayetemiloluwa@gmail.com
                         </a>
                         <div className="flex gap-4 pt-4">
-                            {[Linkedin, Twitter, Instagram, FaWhatsappSquare].map((Icon, i) => (
+                            {[LinkedinIcon, TwitterXIcon, GithubIcon, WhatsappIcon].map((Icon, i) => (
                                 <a aria-label={`Social link ${i + 1}`} key={i} href="#" className="no-underline p-3 bg-bg-secondary text-text-primary border border-border-default rounded-full hover:text-link-hover hover:border-accent active:text-link-active transition-colors">
-                                    <Icon size={20} />
+                                    <Icon width="20" height="20" aria-hidden="true" />
                                 </a>
                             ))}
                         </div>
@@ -47,21 +50,21 @@ export default function Contact() {
                 </motion.div>
 
                 {/* Right Side: Minimal Form */}
-                <motion.div variants={item} className="bg-bg-secondary border border-border-default p-8 md:p-12 rounded-3xl">
+                <motion.div variants={item} className="bg-bg-secondary p-8 md:p-12 rounded-3xl shadow-xl shadow-accent/10">
                     <form className="space-y-6">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="contact-name" className="text-sm font-semibold uppercase tracking-wider text-text-muted">Name</label>
-                                <input id="contact-name" type="text" className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 focus:border-accent transition-colors" placeholder="Your name" />
+                                <input id="contact-name" type="text" className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 transition-colors outline-none" placeholder="Your name" />
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="contact-email" className="text-sm font-semibold uppercase tracking-wider text-text-muted">Email</label>
-                                <input id="contact-email" type="email" className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 focus:border-accent transition-colors" placeholder="temi@example.com" />
+                                <input id="contact-email" type="email" className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 transition-colors outline-none" placeholder="temi@example.com" />
                             </div>
                         </div>
                         <div className="space-y-2">
                             <label htmlFor="contact-message" className="text-sm font-semibold uppercase tracking-wider text-text-muted">Message</label>
-                            <textarea id="contact-message" rows={4} className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 focus:border-accent transition-colors" placeholder="Tell me about your project..."></textarea>
+                            <textarea id="contact-message" rows={4} className="w-full bg-transparent text-text-primary placeholder:text-text-muted border-b border-border-control py-3 transition-colors outline-none" placeholder="Tell me about your project..."></textarea>
                         </div>
                         <button type="submit" className="w-full bg-button text-button-text py-4 rounded-xl font-bold text-lg hover:bg-button-hover active:bg-button-active transition-colors mt-4">
                             Send Message
