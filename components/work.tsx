@@ -16,7 +16,7 @@ const item = {
 const projects = [
   {
     title: 'SRS Studio',
-    description: 'An AI-powered tool to generate structured Software Requirements Specifications (SRS) with deterministic evaluation metrics.',
+    description: 'An AI-powered requirements engineering platform that generates structured SRS and PRD documents, then evaluates requirements for ambiguity, atomicity, completeness, and verifiability.',
     image: '/srs-studio.png',
     tags: ['Next.js', 'LLM', 'TypeScript', 'Framer Motion', 'Supabase'],
     liveLink: 'https://srs-studio.vercel.app/',
@@ -26,7 +26,7 @@ const projects = [
 
   {
     title: 'Luxe Realty',
-    description: '',
+    description: 'A real-estate platform featuring advanced property search, detailed listings, image galleries, agent information, and inspection booking.',
     image: '/realestate/hero.png',
     tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Supabase', 'Postgre'],
     liveLink: 'https://realestate-4un36rcex-temis-projects-5cf1e031.vercel.app/',
@@ -35,7 +35,7 @@ const projects = [
 
   {
     title: 'Kinetic Apex',
-    description: 'A fitness website with a focus on the user experience and animations.',
+    description: 'A fitness and performance-coaching brand website featuring private, hybrid, and remote training programs, athlete progress tracking, client testimonials, and seamless consultation bookings.',
     image: '/gymwrath/hero.png',
     tags: ['Next.js', 'TypeScript', 'Framer Motion'],
     liveLink: 'https://gymwarth.vercel.app/',
