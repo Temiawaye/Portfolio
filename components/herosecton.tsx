@@ -168,17 +168,21 @@ export default function HeroSection() {
             >
                 <button
                     type="button"
+                    aria-label="Projects"
                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                     className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-button px-6 py-3 text-base font-medium text-button-text transition-[background-color,transform] hover:bg-button-hover active:scale-[0.98] active:bg-button-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
                 >
-                    View projects
+                    <span aria-hidden="true">~/</span>
+                    <span>projects</span>
                 </button>
                 <button
                     type="button"
+                    aria-label="Contact me"
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                     className="inline-flex min-h-12 items-center justify-center rounded-2xl border-2 border-border-control bg-bg-primary/60 px-6 py-3 text-base font-medium text-text-primary transition-[background-color,border-color,transform] hover:border-accent-hover hover:bg-bg-secondary active:scale-[0.98] active:border-accent-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
                 >
-                    Contact me
+                    <span className="mr-2 text-electric-lavender" aria-hidden="true">{">"}</span>
+                    <span>contact me</span>
                 </button>
             </motion.div>
 
