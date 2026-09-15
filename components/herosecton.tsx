@@ -164,17 +164,19 @@ export default function HeroSection() {
 
             <motion.div 
                 variants={itemb} 
-                className="relative z-10 flex w-full flex-wrap justify-center gap-4"
+                className="relative z-10 mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
             >
                 <button
+                    type="button"
                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="rounded-2xl bg-button px-6 py-3 font-medium text-button-text transition-colors hover:bg-button-hover active:bg-button-active sm:px-8"
+                    className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-button px-6 py-3 text-base font-medium text-button-text transition-[background-color,transform] hover:bg-button-hover active:scale-[0.98] active:bg-button-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
                 >
                     View projects
                 </button>
                 <button
+                    type="button"
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="rounded-2xl border-2 border-border-control bg-transparent px-6 py-3 text-text-primary transition-colors hover:border-accent-hover hover:bg-bg-secondary active:border-accent-active sm:px-8"
+                    className="inline-flex min-h-12 items-center justify-center rounded-2xl border-2 border-border-control bg-bg-primary/60 px-6 py-3 text-base font-medium text-text-primary transition-[background-color,border-color,transform] hover:border-accent-hover hover:bg-bg-secondary active:scale-[0.98] active:border-accent-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender sm:px-8"
                 >
                     Contact me
                 </button>
