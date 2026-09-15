@@ -65,12 +65,12 @@ export function Work() {
     >
       <div className=" max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div variants={item} className="mb-15 flex flex-col items-center justify-center gap-2 text-center items-center">
-          <h2 className="mb-4 flex flex-wrap justify-center text-base font-semibold tracking-tight" aria-label="Projects">
+        <motion.div variants={item} className="mb-15 flex flex-col gap-2">
+          <h2 className="mb-4 flex flex-wrap text-base font-semibold tracking-tight" aria-label="Projects">
             <span className="text-electric-lavender" aria-hidden="true">~/</span>
             <span className="text-text-primary">projects</span>
           </h2>
-          <div className=" flex flex-col items-center justify-center">
+          <div className=" flex flex-col">
             <h3 className="text-4xl md:text-6xl font-semibold tracking-tight text-text-primary leading-tight mb-3">
               SHIPPED PROJECTS.
             </h3>

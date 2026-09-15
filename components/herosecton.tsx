@@ -72,7 +72,7 @@ export default function HeroSection() {
             <div
                 className="pointer-events-none absolute inset-0"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.6) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(26, 16, 51, 0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 16, 51, 0.8) 1px, transparent 1px)",
                     backgroundSize: "42px 42px",
                     maskImage: "radial-gradient(circle at center, black 12%, transparent 72%)",
                 }}
@@ -106,7 +106,7 @@ export default function HeroSection() {
                 className="relative z-10 mb-7 md:mb-9"
             >
                 <div
-                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-border-default cursor-pointer overflow-hidden hover:scale-120 transition-all duration-300 ease-in-out shadow-xl shadow-accent/25"
+                    className="w-40 h-40 md:w-50 md:h-50 lg:w-60 lg:h-60 rounded-full border-4 border-border-default cursor-pointer overflow-hidden hover:scale-120 transition-all duration-300 ease-in-out shadow-xl shadow-accent/11"
                 >
                     <img
                         src="/profile.png"
@@ -144,12 +144,12 @@ export default function HeroSection() {
 
             <motion.p 
                 variants={item} 
-                className="relative z-10 mx-auto mb-5 w-full max-w-2xl text-center text-base leading-relaxed text-text-secondary md:text-lg"
+                className="relative z-10 mx-auto mb-10 w-full max-w-2xl text-center text-base leading-relaxed text-text-secondary md:text-lg"
             >
                 Bringing ideas to life through performant code and thoughtful design. Specializing in frontend architecture, full-stack applications, and interactive user interfaces.
             </motion.p>
 
-            <motion.div
+            {/* <motion.div
                 variants={item}
                 className="relative z-10 mb-7 flex w-full max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm font-medium text-text-muted"
                 aria-label="Core technologies: React, Next.js, TypeScript, and Motion"
@@ -160,7 +160,7 @@ export default function HeroSection() {
                         <span>{technology}</span>
                     </span>
                 ))}
-            </motion.div>
+            </motion.div> */}
 
             <motion.div 
                 variants={itemb} 
