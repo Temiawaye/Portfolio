@@ -65,7 +65,7 @@ export default function Footer() {
                                 aria-label={label}
                                 target={external ? "_blank" : undefined}
                                 rel={external ? "noopener noreferrer" : undefined}
-                                className="flex size-10 items-center justify-center rounded-full border border-border-control text-text-secondary no-underline transition-[color,border-color,transform] hover:border-accent-hover hover:text-link-hover active:border-accent-active active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
+                                className="flex items-center justify-center text-text-secondary no-underline transition-[color,border-color,transform] hover:text-link-hover active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
                             >
                                 <Icon width="19" height="19" aria-hidden="true" />
                             </a>

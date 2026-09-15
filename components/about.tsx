@@ -42,7 +42,6 @@ export default function About() {
                         <span className="text-text-secondary">Scale with precision.</span>
                     </h3>
                 </motion.div>
-
                 {/* Content grid */}
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Left: main copy */}

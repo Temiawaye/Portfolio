@@ -61,7 +61,7 @@ export function Work() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.05 }}
-      className="py-15 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
+      className="py-10 px-5 md:px-10 lg:px-20 bg-bg-primary text-text-primary"
     >
       <div className=" max-w-6xl mx-auto">
         {/* Header */}
