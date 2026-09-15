@@ -81,10 +81,10 @@ export default function Navbar() {
         className="flex shrink-0 cursor-pointer items-center rounded-lg transition-opacity hover:opacity-85 active:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender"
       >
         <Image
-          src="/logo.svg"
+          src="/logos/logo.svg"
           alt=""
-          width={100}
-          height={36}
+          width={50}
+          height={16}
           priority
           className="h-8 w-auto sm:h-9"
         />
