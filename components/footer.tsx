@@ -1,36 +1,90 @@
 "use client"
 
+import EnvelopeIcon from "@iconify-react/bi/envelope"
 import GithubIcon from "@iconify-react/bi/github"
-import LinkedinIcon from "@iconify-react/bi/linkedin"
-import TwitterXIcon from '@iconify-react/bi/twitter-x';
-import WhatsappIcon from "@iconify-react/bi/whatsapp"
+import { motion, useReducedMotion } from "motion/react"
 
-const socials = [
-    { icon: LinkedinIcon, href: "#" },
-    { icon: TwitterXIcon, href: "#" },
-    { icon: GithubIcon, href: "#" },
-    { icon: WhatsappIcon, href: "#" },
+const footerLinks = [
+    {
+        label: "Email Awaye Temiloluwa",
+        href: "mailto:awayetemiloluwa@gmail.com",
+        icon: EnvelopeIcon,
+        external: false,
+    },
+    {
+        label: "Awaye Temiloluwa on GitHub",
+        href: "https://github.com/Temiawaye",
+        icon: GithubIcon,
+        external: true,
+    },
 ]
 
 export default function Footer() {
+    const prefersReducedMotion = useReducedMotion()
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" })
+    }
+
     return (
-        <footer className="w-full bg-bg-secondary text-text-secondary border-t border-border-default py-8 px-5 lg:px-20">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between items-center gap-4">
-                <p className="font-bold text-text-primary text-lg tracking-tighter">TEMI<span className="text-accent">.</span></p>
-                <p className="text-sm text-text-muted">© 2025 Awaye Temiloluwa. All rights reserved.</p>
-                <div className="flex gap-4">
-                    {socials.map(({ icon: Icon, href }, i) => (
-                        <a
-                            key={i}
-                            href={href}
-                            aria-label={`Social link ${i + 1}`}
-                            className="no-underline text-text-muted hover:text-link-hover active:text-link-active transition-colors"
+        <motion.footer
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative w-full border-t border-border-default bg-bg-primary px-5 py-8 text-text-secondary lg:px-20"
+        >
+            <span className="absolute left-0 top-0 h-px w-24 bg-accent" aria-hidden="true" />
+
+            <div className="mx-auto max-w-6xl">
+                <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+                    <div className="flex flex-col items-center gap-2 md:items-start">
+                        <button
+                            type="button"
+                            onClick={scrollToTop}
+                            aria-label="Back to top"
+                            className="cursor-pointer text-lg font-bold tracking-tighter text-text-primary transition-colors hover:text-link-hover active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender"
                         >
-                            <Icon width="18" height="18" aria-hidden="true" />
-                        </a>
-                    ))}
+                            TEMI<span className="text-accent">.</span>
+                        </button>
+                        <p className="flex items-center gap-2 text-xs text-text-muted">
+                            <span className="size-2 rounded-full bg-accent" aria-hidden="true" />
+                            Available for opportunities
+                        </p>
+                    </div>
+
+                    <p className="text-center text-xs text-text-muted sm:text-sm">
+                        Built with <span className="text-text-secondary">Next.js · TypeScript · Motion</span>
+                    </p>
+
+                    <div className="flex items-center gap-3">
+                        {footerLinks.map(({ icon: Icon, href, label, external }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                aria-label={label}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noopener noreferrer" : undefined}
+                                className="flex size-10 items-center justify-center rounded-full border border-border-control text-text-secondary no-underline transition-[color,border-color,transform] hover:border-accent-hover hover:text-link-hover active:border-accent-active active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
+                            >
+                                <Icon width="19" height="19" aria-hidden="true" />
+                            </a>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={scrollToTop}
+                            className="ml-1 inline-flex min-h-10 items-center gap-2 rounded-xl border border-border-control px-3 text-xs font-medium text-text-primary transition-[color,border-color,transform] hover:border-accent-hover hover:text-link-hover active:border-accent-active active:text-link-active focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-electric-lavender motion-safe:hover:-translate-y-0.5"
+                        >
+                            <span aria-hidden="true">↑</span>
+                            back to top
+                        </button>
+                    </div>
+                </div>
+
+                <div className="mt-6 border-t border-border-default pt-5 text-center md:text-left">
+                    <p className="text-xs text-text-muted">© {new Date().getFullYear()} Awaye Temiloluwa. All rights reserved.</p>
                 </div>
             </div>
-        </footer>
+        </motion.footer>
     )
 }
