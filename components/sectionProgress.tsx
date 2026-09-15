@@ -52,14 +52,21 @@ export default function SectionProgress() {
     return (
         <nav
             aria-label="Page section progress"
-            className={`fixed left-4 top-1/2 z-40 -translate-y-1/2 transition-all duration-300 md:left-8 lg:left-12 ${
-                isVisible ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none -translate-x-3 opacity-0"
+            className={`fixed bottom-5 left-1/2 z-40 -translate-x-1/2 transition-all duration-300 md:bottom-auto md:left-8 md:top-1/2 md:translate-x-0 md:-translate-y-1/2 lg:left-12 ${
+                isVisible
+                    ? "pointer-events-auto translate-y-0 opacity-100 md:translate-x-0"
+                    : "pointer-events-none translate-y-3 opacity-0 md:-translate-x-3 md:translate-y-0"
             }`}
         >
-            <div className="relative flex h-[min(72vh,42rem)] min-h-80 w-7 flex-col items-center justify-between py-1 md:w-8 md:py-2">
-                <span className="absolute inset-y-5 left-1/2 w-px -translate-x-1/2 bg-border-default" aria-hidden="true" />
+            <div className="relative flex h-10 w-[min(calc(100vw_-_2.5rem),24rem)] items-center justify-between px-1 md:h-[min(72vh,42rem)] md:min-h-80 md:w-8 md:flex-col md:px-0 md:py-2">
+                <span className="absolute inset-x-5 top-1/2 h-px -translate-y-1/2 bg-border-default md:inset-x-auto md:inset-y-5 md:left-1/2 md:top-auto md:h-auto md:w-px md:-translate-x-1/2 md:translate-y-0" aria-hidden="true" />
                 <span
-                    className="absolute left-1/2 top-5 w-px -translate-x-1/2 bg-accent transition-[height] duration-300"
+                    className="absolute left-5 top-1/2 h-px -translate-y-1/2 bg-accent transition-[width] duration-300 md:hidden"
+                    style={{ width: `calc((100% - 2.5rem) * ${progress})` }}
+                    aria-hidden="true"
+                />
+                <span
+                    className="absolute left-1/2 top-5 hidden w-px -translate-x-1/2 bg-accent transition-[height] duration-300 md:block"
                     style={{ height: `calc((100% - 2.5rem) * ${progress})` }}
                     aria-hidden="true"
                 />
@@ -71,7 +78,7 @@ export default function SectionProgress() {
                         onClick={() => goToSection(section.id)}
                         aria-label={`Go to ${section.label} section`}
                         aria-current={activeIndex === index ? "location" : undefined}
-                        className="group relative z-10 flex h-10 w-7 items-center justify-center rounded-full md:w-8"
+                        className="group relative z-10 flex size-10 items-center justify-center rounded-full md:h-10 md:w-8"
                     >
                         <span
                             className={`block rounded-full border transition-all duration-200 ${
