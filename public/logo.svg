@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title">
   <title id="title">TA developer logo — &lt;TA/&gt;</title>
-  <g fill="#BF5FFF">
+  <g fill="#8643B3">
     <path d="M190 75 40 157V203L190 285V227L92 180 190 133Z"/>
     <path d="M225 75H415V125H345V285H295V125H225Z"/>
     <path fill-rule="evenodd" d="M440 285 514 75H566L640 285H586L571 239H508L493 285ZM523 191H556L540 138Z"/>
