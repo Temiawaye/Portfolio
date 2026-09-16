@@ -12,9 +12,9 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Awaye Temiloluwa — Graphics Designer & Visual Artist",
+  title: "Awaye Temiloluwa Frontend Engineer",
   description:
-    "Portfolio of Awaye Temiloluwa, a creative graphics designer and visual artist specializing in branding, illustration, print design, and visual identity systems.",
+    "Portfolio of Awaye Temiloluwa, a frontend engineer and UI developer specializing in building visually stunning and user-friendly web applications.",
 };
 
 export default function RootLayout({
@@ -34,10 +34,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${jetBrainsMono.variable} antialiased`}>
-        <IntroGate>
+        {/* <IntroGate> */}
           <Navbar />
           {children}
-        </IntroGate>
+        {/* </IntroGate> */}
       </body>
     </html>
   );
