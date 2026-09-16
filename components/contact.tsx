@@ -17,6 +17,13 @@ const item = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: easeOut } }
 }
 
+const socialLinks = [
+    { label: "LinkedIn", href: "", icon: LinkedinIcon },
+    { label: "X", href: "", icon: TwitterXIcon },
+    { label: "GitHub", href: "https://github.com/Temiawaye", icon: GithubIcon },
+    { label: "WhatsApp", href: "", icon: WhatsappIcon },
+]
+
 export default function Contact() {
     const prefersReducedMotion = useReducedMotion()
 
@@ -48,8 +55,20 @@ export default function Contact() {
                             <EnvelopeIcon width="24" height="24" aria-hidden="true" /> awayetemiloluwa@gmail.com
                         </a>
                         <div className="flex gap-4 pt-4">
-                            {[LinkedinIcon, TwitterXIcon, GithubIcon, WhatsappIcon].map((Icon, i) => (
-                                <a aria-label={`Social link ${i + 1}`} key={i} href="#" className="no-underline p-3 bg-bg-secondary text-text-primary border border-border-default rounded-full hover:text-link-hover hover:border-accent active:text-link-active transition-colors">
+                            {socialLinks.map(({ label, href, icon: Icon }) => (
+                                <a
+                                    key={label}
+                                    href={href || undefined}
+                                    target={href ? "_blank" : undefined}
+                                    rel={href ? "noopener noreferrer" : undefined}
+                                    aria-label={href ? `Visit my ${label} profile` : `${label} link not configured`}
+                                    aria-disabled={!href}
+                                    className={`rounded-full border border-border-default bg-bg-secondary p-3 no-underline transition-colors ${
+                                        href
+                                            ? "text-text-primary hover:border-accent hover:text-link-hover active:text-link-active"
+                                            : "cursor-default text-text-muted"
+                                    }`}
+                                >
                                     <Icon width="20" height="20" aria-hidden="true" />
                                 </a>
                             ))}
