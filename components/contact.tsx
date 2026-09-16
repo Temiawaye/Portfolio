@@ -18,10 +18,10 @@ const item = {
 }
 
 const socialLinks = [
-    { label: "LinkedIn", href: "", icon: LinkedinIcon },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/temiloluwa-awaye/", icon: LinkedinIcon },
     { label: "X", href: "", icon: TwitterXIcon },
     { label: "GitHub", href: "https://github.com/Temiawaye", icon: GithubIcon },
-    { label: "WhatsApp", href: "", icon: WhatsappIcon },
+    { label: "WhatsApp", href: "https://wa.me/2349161417695", icon: WhatsappIcon },
 ]
 
 export default function Contact() {
